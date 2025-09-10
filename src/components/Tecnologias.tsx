@@ -1,0 +1,131 @@
+import reactLogo from "@/assets/frontend/react-original.svg"
+import typescriptLogo from "@/assets/frontend/typescript-original.svg"
+import javaLogo from "@/assets/frontend/javascript-original.svg"
+import htmlLogo from "@/assets/frontend/html5-original.svg"
+import cssLogo from "@/assets/frontend/css3-original.svg"
+import tailwindLogo from "@/assets/frontend/Tailwind_CSS_Logo.svg.png"
+
+import expressLogo from "@/assets/backend/express-original.svg"
+import postgresLogo from "@/assets/backend/postgresql-original.svg"
+import mongoLogo from "@/assets/backend/mongodb-original.svg"
+
+import githubLogo from "@/assets/herramientas/github-original.svg"
+import vsLogo from "@/assets/herramientas/vscode-original.svg"
+import figmaLogo from "@/assets/herramientas/figma-original.svg"
+import insomniaLogo from "@/assets/herramientas/insomnia-icon.png"
+
+import Image from "next/image"
+
+const tecnologiasFrontend = [
+    {
+        icono: reactLogo,
+        nombre: "React"
+    },
+    {
+        icono: typescriptLogo,
+        nombre: "TypeScript"
+    },
+    {
+        icono: javaLogo,
+        nombre: "JavaScript"
+    },
+    {
+        icono: htmlLogo,
+        nombre: "HTML 5"
+    },
+    {
+        icono: cssLogo,
+        nombre: "CSS 3"
+    },
+    {
+        icono: tailwindLogo,
+        nombre: "Tailwind"
+    },
+]
+
+const tecnologiasBackend = [
+    {
+        icono: expressLogo,
+        nombre: "Express"
+    },
+    {
+        icono: postgresLogo,
+        nombre: "PostgreSQL"
+    },
+    {
+        icono: mongoLogo,
+        nombre: "MongoDB"
+    },
+]
+
+const herramientas = [
+    {
+        icono: githubLogo,
+        nombre: "GitHub"
+    },
+    {
+        icono: vsLogo,
+        nombre: "VS Code"
+    },
+    {
+        icono: figmaLogo,
+        nombre: "Figma"
+    },
+    {
+        icono: insomniaLogo,
+        nombre: "Insomnia"
+    },
+]
+
+const Teconologias = () => {
+    return (
+        <div className="mt-28 px-40 pb-20">
+            <div className="flex flex-col items-center">
+                <h1 className="text-4xl font-bold mb-2 text-gray-700">Tecnologías</h1>
+                <div className="bg-violet-600 h-1 w-20"></div>
+            </div>
+
+
+            <div className="flex flex-col items-center mt-16">
+                <h2 className="text-xl font-bold text-gray-800">Frontend</h2>
+                <div className="flex flex-row w-full gap-4 py-6">
+                    {tecnologiasFrontend.map((tec, index) => (
+                        <div key={index} className="flex flex-col items-center justify-center gap-4 duration-500 hover:scale-105 w-40 h-36 rounded-xl bg-[#f4f5f7] hover:shadow-md  hover:shadow-gray-400">
+                            <Image src={tec.icono} alt="react logo"width={50} height={50}/>
+                            <span>{tec.nombre}</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+
+            <div className="flex flex-col items-center mt-16">
+                <h2 className="text-xl font-bold text-gray-800">Backend & Database</h2>
+                <div className="flex flex-row gap-4 py-6 justify-start w-full">
+                    {tecnologiasBackend.map((tec, index) => (
+                        <div key={index} className="flex flex-col items-center justify-center gap-4 duration-500 hover:scale-105 w-40 h-36 rounded-xl bg-[#f4f5f7] hover:shadow-md  hover:shadow-gray-400">
+                            <Image src={tec.icono} alt="react logo"width={50} height={50}/>
+                            <span>{tec.nombre}</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+
+            <div className="flex flex-col items-center mt-16">
+                <h2 className="text-xl font-bold text-gray-800">Herramientas</h2>
+                <div className="flex flex-row gap-4 py-6 justify-start w-full">
+                    {herramientas.map((tec, index) => (
+                        <div key={index} className="flex flex-col items-center justify-center gap-4 duration-500 hover:scale-105 w-40 h-36 rounded-xl bg-[#f4f5f7] hover:shadow-md  hover:shadow-gray-400">
+                            <Image src={tec.icono} alt="react logo"width={50} height={50}/>
+                            <span>{tec.nombre}</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+        </div>
+    )
+}
+
+export default Teconologias

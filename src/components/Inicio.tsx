@@ -1,11 +1,11 @@
 import { Download, Github, Linkedin, Mail } from "lucide-react"
 import Image from "next/image"
-import fotoPerfil from "../../assets/yo.png"
+import fotoPerfil from "@/assets/yo.png"
 
 
 const Inicio = () => {
     return (
-        <div className="flex justify-center pt-20 ">
+        <div className="flex justify-center py-20 ">
             <div className="grid grid-cols-2 justify-between w-[95%] pt-20 px-32">
                 <div className="flex flex-col gap-4">
                     <h1 className="text-6xl font-bold"><span className="text-gray-800">Hola, soy</span> <br/>
