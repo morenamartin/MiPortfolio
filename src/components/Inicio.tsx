@@ -3,22 +3,22 @@ import Image from "next/image"
 import fotoPerfil from "@/assets/yo.png"
 
 
-const Inicio = () => {
+const Inicio = ({ id }: { id: string }) => {
     return (
-        <div className="flex justify-center py-20 ">
+        <div id={id} className="flex justify-center py-20 ">
             <div className="grid grid-cols-2 justify-between w-[95%] pt-20 px-32">
                 <div className="flex flex-col gap-4">
                     <h1 className="text-6xl font-bold"><span className="text-gray-800">Hola, soy</span> <br/>
                         <span className="text-violet-600">Desarrolladora <br/>
                         Full Stack</span></h1>
-                    <p className="text-gray-500 font-semibold text-xl">Especializada en crear experiencias web modernas y funcionales. Apasionada por el código limpio, el diseño intuitivo y las nuevas tecnologías.</p>
+                    <p className="text-xl font-semibold text-gray-500">Especializada en crear experiencias web modernas y funcionales. Apasionada por el código limpio, el diseño intuitivo y las nuevas tecnologías.</p>
                     
-                    <div className="mt-6 flex flex-row gap-4">
-                        <button className="bg-violet-600 hover:bg-violet-800 px-7 py-3 rounded-lg text-white font-semibold">Ver Proyectos</button>
+                    <div className="flex flex-row gap-4 mt-6">
+                        <button className="py-3 font-semibold text-white rounded-lg bg-violet-600 hover:bg-violet-800 px-7">Ver Proyectos</button>
                         <button className="border-[1px] border-gray-300 hover:border-gray-500 px-7 py-3 rounded-lg text-gray-800 font-semibold">Contactar</button>
 
-                        <button className="text-gray-600 hover:text-violet-800 flex flex-row items-center"> 
-                            <Download className="h-5 w-10"/> 
+                        <button className="flex flex-row items-center text-gray-600 hover:text-violet-800"> 
+                            <Download className="w-10 h-5"/> 
                             <span>Descargar CV</span>
                         </button>
 
@@ -31,11 +31,11 @@ const Inicio = () => {
                     </div>
                 </div>
                 
-                <div className="justify-items-end pt-10">
-                    <div className="relative h-80 w-80 rounded-full flex items-center justify-center overflow-hidden border-4 border-violet-600">
+                <div className="pt-10 justify-items-end">
+                    <div className="relative flex items-center justify-center overflow-hidden border-4 rounded-full h-80 w-80 border-violet-600">
                         <Image src={fotoPerfil} alt="profilePicture"/>
                     </div>
-                    <div className="absolute top-48 right-40 w-20 h-20 flex items-center text-sm font-bold text-white justify-center rounded-full bg-green-500">
+                    <div className="absolute flex items-center justify-center w-20 h-20 text-sm font-bold text-white bg-green-500 rounded-full top-48 right-40">
                         Disponible
                     </div>
                 </div>

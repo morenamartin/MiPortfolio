@@ -19,13 +19,13 @@ type Proyecto = {
 }
 
 
-const Proyectos = () => {
+const Proyectos = ({ id }: { id: string }) => {
     const [filtroActivo, setFiltroActivo] = useState("Todos")
     const [proyectoActivo, setProyectoActivo] = useState<Proyecto | null>(null)
     const {abrirModal, cerrarModal, modal} =useModalContext()
 
     return (
-        <div className="px-40 pb-20 mt-16">
+        <div id={id} className="px-40 pb-20 mt-16">
             <div className="flex flex-col items-center">
                 <h1 className="mb-2 text-4xl font-bold text-gray-700">Proyectos</h1>
                 <div className="w-20 h-1 bg-violet-600"></div>

@@ -1,50 +1,60 @@
 import { ClipboardList, Clock, MessageCircle, Repeat, Target, Users } from "lucide-react"
 
-const Habilidades = () => {
+const habilidades = [
+    {
+        icono: <Users />,
+        texto: "Trabajo en equipo",
+        color: "#6639b4"
+    },
+    {
+        icono: <MessageCircle />,
+        texto: "Comunicación Eficaz",
+        color: "#7c3aed"
+    },
+    {
+        icono: <Target />,
+        texto: "Orientación a resultados",
+        color: "#955cf6"
+    },
+    {
+        icono: <Clock />,
+        texto: "Gestión del tiempo",
+        color: "#9d66fa"
+    },
+    {
+        icono: <ClipboardList />,
+        texto: "Organización",
+        color: "#6928d9"
+    },
+    {
+        icono: <Repeat />,
+        texto: "Adaptabilidad",
+        color: "#6e3fbe"
+    },
+]
+
+const Habilidades = ({ id }: { id: string }) => {
     return (
-        <div className="mt-36 px-40 pb-20">
+        <div id={id} className="px-40 pb-20 mt-36">
             <div className="flex flex-col items-center">
-                <h1 className="text-4xl font-bold mb-2 text-gray-700">Habilidades Blandas</h1>
-                <div className="bg-violet-600 h-1 w-20"></div>
+                <h1 className="mb-2 text-4xl font-bold text-gray-700">Habilidades Blandas</h1>
+                <div className="w-20 h-1 bg-violet-600"></div>
             </div>
 
-            <div className="grid grid-cols-3 justify-items-center gap-6 px-20 mt-14">
-                <div className="h-40 w-64 rounded-lg shadow-md shadow-gray-400 hover:shadow-gray-500 hover:shadow-md flex flex-col justify-center items-center gap-4">
-                    <div className="bg-[#6639b4] rounded-xl w-12 h-12 flex items-center justify-center text-white">
-                        <Users />
+            <div className="grid grid-cols-3 gap-6 px-20 justify-items-center mt-14">
+
+            {
+                habilidades.map((hab, index) => (
+                    <div key={index} className="flex flex-col items-center justify-center w-64 h-40 gap-4 rounded-lg shadow-md shadow-gray-400 hover:shadow-gray-500 hover:shadow-md">
+                        <div className={`bg-[${hab.color}] rounded-xl w-12 h-12 flex items-center justify-center text-white`}>
+                            {hab.icono}
+                        </div>
+                        <span className="text-base font-semibold text-gray-800">{hab.texto}</span>
                     </div>
-                    <span className="font-semibold text-base text-gray-800">Trabajo en equipo</span>
-                </div>
-                <div className="h-40 w-64 rounded-lg shadow-md shadow-gray-400 hover:shadow-gray-500 hover:shadow-md flex flex-col justify-center items-center gap-4">
-                    <div className="bg-[#7c3aed] rounded-xl w-12 h-12 flex items-center justify-center text-white">
-                        <MessageCircle />
-                    </div>
-                    <span className="font-semibold text-base text-gray-800">Comunicación Eficaz</span>
-                </div>
-                <div className="h-40 w-64 rounded-lg shadow-md shadow-gray-400 hover:shadow-gray-500 hover:shadow-md flex flex-col justify-center items-center gap-4">
-                    <div className="bg-[#955cf6] rounded-xl w-12 h-12 flex items-center justify-center text-white">
-                        <Target />
-                    </div>
-                    <span className="font-semibold text-base text-gray-800">Orientación a resultados</span>
-                </div>
-                <div className="h-40 w-64 rounded-lg shadow-md shadow-gray-400 hover:shadow-gray-500 hover:shadow-md flex flex-col justify-center items-center gap-4">
-                    <div className="bg-[#9d66fa] rounded-xl w-12 h-12 flex items-center justify-center text-white">
-                        <Clock />
-                    </div>
-                    <span className="font-semibold text-base text-gray-800">Gestión del tiempo</span>
-                </div>
-                <div className="h-40 w-64 rounded-lg shadow-md shadow-gray-400 hover:shadow-gray-500 hover:shadow-md flex flex-col justify-center items-center gap-4">
-                    <div className="bg-[#6928d9] rounded-xl w-12 h-12 flex items-center justify-center text-white">
-                        <ClipboardList />
-                    </div>
-                    <span className="font-semibold text-base text-gray-800">Organización</span>
-                </div>
-                <div className="h-40 w-64 rounded-lg shadow-md shadow-gray-400 hover:shadow-gray-500 hover:shadow-md flex flex-col justify-center items-center gap-4">
-                    <div className="bg-[#6e3fbe] rounded-xl w-12 h-12 flex items-center justify-center text-white">
-                        <Repeat />
-                    </div>
-                    <span className="font-semibold text-base text-gray-800">Adaptabilidad</span>
-                </div>
+
+                ))
+            }
+
             </div>
 
         </div>
