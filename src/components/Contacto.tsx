@@ -24,7 +24,7 @@ const Contacto = ({ id }: { id: string }) => {
                                 <span className="text-xl font-semibold">Email</span>
                                 <a 
                                 href="https://mail.google.com/mail/?view=cm&fs=1&to=martinmorena269@gmail.com&su=Contacto&body=Hola%2C%20quiero%20consultarte..." target="_blank" rel="noopener noreferrer"
-                                className="w-[450px] text-lg text-gray-700 hover:text-[#9333ea]">
+                                className="w-fit text-lg text-gray-700 hover:text-[#9333ea]">
                                     martinmorena269@gmail.com
                                 </a>
                             </div>
@@ -37,7 +37,7 @@ const Contacto = ({ id }: { id: string }) => {
                                 <span className="text-xl font-semibold">Teléfono</span>
                                 <a 
                                 href="https://wa.me/5491140864329" target="_blank" rel="noopener noreferrer"
-                                className="w-[450px] text-lg text-gray-700 hover:text-[#8b5cf6]">
+                                className="w-fit text-lg text-gray-700 hover:text-[#8b5cf6]">
                                     11 4086-4329
                                 </a>
                             </div>
@@ -48,7 +48,7 @@ const Contacto = ({ id }: { id: string }) => {
                             </div>
                             <div className="flex flex-col">
                                 <span className="text-xl font-semibold">Ubicación</span>
-                                <p className="w-[450px] text-lg text-gray-700 ">
+                                <p className="text-lg text-gray-700 w-fit ">
                                     Buenos Aires, Argentina
                                 </p>
                             </div>
