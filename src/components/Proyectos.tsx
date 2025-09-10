@@ -1,28 +1,39 @@
 "use client"
 import { useState } from "react"
-import ECommerce from "./proyectos/ECommerce"
-import PsyMatch from "./proyectos/Psymatch"
-import Ascensores from "./proyectos/Ascensores"
+import ProjectCard from "./ProyectCards"
+import { useModalContext } from "@/context/moduloEcommerce"
+import ModalEcommerce from "./modal/ModalEcommerce"
+import { categories } from "@/helpers/proyectos"
 
-export const categories = [
-  { id: 1, nombre: "Proyecto 1", tipo: "Henry", component: <ECommerce /> },
-  { id: 2, nombre: "Proyecto 2", tipo: "Freelance", component: <Ascensores /> },
-  { id: 3, nombre: "Proyecto 3", tipo: "Henry", component: <PsyMatch /> },
-]
+type Proyecto = {
+  id: number
+  nombre: string
+  tipo: string
+  descripcion: string
+  descripcionModal?: string
+  aprendi?: string
+  imagen: string
+  tags: string[]
+  deploy?: string
+  github?: string
+}
+
 
 const Proyectos = () => {
     const [filtroActivo, setFiltroActivo] = useState("Todos")
+    const [proyectoActivo, setProyectoActivo] = useState<Proyecto | null>(null)
+    const {abrirModal, cerrarModal, modal} =useModalContext()
 
     return (
-        <div className="mt-16 px-40 pb-20">
+        <div className="px-40 pb-20 mt-16">
             <div className="flex flex-col items-center">
-                <h1 className="text-4xl font-bold mb-2 text-gray-700">Proyectos</h1>
-                <div className="bg-violet-600 h-1 w-20"></div>
+                <h1 className="mb-2 text-4xl font-bold text-gray-700">Proyectos</h1>
+                <div className="w-20 h-1 bg-violet-600"></div>
             </div>
 
 
             <div className="mt-10">
-                <div className="w-fit grid grid-cols-3 gap-6 m-auto">
+                <div className="grid grid-cols-3 gap-6 m-auto w-fit">
                     <button className={`${filtroActivo === "Todos" && "bg-violet-500 text-white"} px-6 py-1 rounded-full`} onClick={() => setFiltroActivo("Todos")}>Todos</button>
                     <button className={`${filtroActivo === "Henry" && "bg-violet-500 text-white"} px-6 py-1 rounded-full`} onClick={() => setFiltroActivo("Henry")}>Henry</button>
                     <button className={`${filtroActivo === "Freelance" && "bg-violet-500 text-white"} px-6 py-1 rounded-full`} onClick={() => setFiltroActivo("Freelance")}>Freelance</button>
@@ -30,16 +41,47 @@ const Proyectos = () => {
             </div>
 
 
-            <div className="grid grid-cols-3 gap-5 justify-items-center mt-10">
+            <div className="grid grid-cols-3 gap-5 mt-10 justify-items-center">
                 {(filtroActivo === "Todos" ? categories : categories.filter(proy => proy.tipo === filtroActivo))
-                    .map(proy => (
-                    <div key={proy.id}>
-                        {proy.component}
-                    </div>
+              .map(proy => (
+                <ProjectCard
+                  key={proy.id}
+                  nombre={proy.nombre}
+                  descripcion={proy.descripcion}
+                  imagen={proy.imagen}
+                  tags={proy.tags}
+                  deploy={proy.deploy}
+                  github={proy.github}
+                  onOpenModal={() => {
+                    setProyectoActivo(proy)
+                    abrirModal()} 
+                  }
+                />
                 ))}
             </div>
 
+           {modal && proyectoActivo && (
+            <div className="fixed top-0 left-0 z-40 w-full h-full flex items-center justify-center px-40 bg-[#00000094]">
+              <ModalEcommerce
+                nombre={proyectoActivo.nombre}
+                descripcion={proyectoActivo.descripcion}
+                descripcionModal={proyectoActivo.descripcionModal}
+                aprendi={proyectoActivo.aprendi}
+                imagen={proyectoActivo.imagen}
+                tags={proyectoActivo.tags}
+                deploy={proyectoActivo.deploy}
+                github={proyectoActivo.github}
+                closeModal={() => {
+                  cerrarModal()
+                  setProyectoActivo(null)
+                }}
+              />
+            </div>
+          )} 
+
         </div>
+
+  
     )
 }
 
