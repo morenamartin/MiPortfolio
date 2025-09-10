@@ -1,11 +1,24 @@
+"use client"
 import { Download, Github, Linkedin, Mail } from "lucide-react"
 import Image from "next/image"
 import fotoPerfil from "@/assets/yo.png"
+import { useEffect, useState } from "react";
 
 
 const Inicio = ({ id }: { id: string }) => {
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 50); 
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+    
     return (
-        <div id={id} className="flex justify-center pt-20 h-fit md:h-[800px]">      
+        <div id={id} className="flex justify-center pt-9 md:pt-20 h-fit md:h-[800px]">      
             <div className="grid grid-rows-2 justify-center md:grid-cols-2 md:justify-between h-fit w-[95%] pt-20 lg:px-32">
                 
                 <div className="flex flex-col w-[100%] h-fit gap-4">
@@ -15,12 +28,35 @@ const Inicio = ({ id }: { id: string }) => {
                     <p className="text-xl font-semibold text-gray-500">Especializada en crear experiencias web modernas y funcionales. Apasionada por el código limpio, el diseño intuitivo y las nuevas tecnologías.</p>
                     
                     <div className="flex flex-col gap-4 mt-6 lg:flex-row">
-                        <button className="py-3 font-semibold text-white rounded-lg bg-violet-600 hover:bg-violet-800 px-7">Ver Proyectos</button>
-                        <button className="border-[1px] border-gray-300 hover:border-gray-500 px-7 py-3 rounded-lg text-gray-800 font-semibold">Contactar</button>
+                        <a href="#proyectos" 
+                        onClick={(e) => {
+                            e.preventDefault();
+                            const section = document.querySelector("#proyectos");
+                            if (section) {
+                            const yOffset = -90; 
+                            const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                            window.scrollTo({ top: y, behavior: "smooth" });
+                            }
+                        }}
+                        className="py-3 font-semibold text-white rounded-lg bg-violet-600 hover:bg-violet-800 px-7">Ver Proyectos</a>
+                        <a href="#contacto" 
+                         onClick={(e) => {
+                            e.preventDefault();
+                            const section = document.querySelector("#contacto");
+                            if (section) {
+                            const yOffset = -90; 
+                            const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                            window.scrollTo({ top: y, behavior: "smooth" });
+                            }
+                        }}
+                        className="border-[1px] border-gray-300 hover:border-gray-500 px-7 py-3 rounded-lg text-gray-800 font-semibold">Contactar</a>
 
                         <button className="flex flex-row items-center justify-center text-gray-600 hover:text-violet-800"> 
                             <Download className="w-10 h-5"/> 
-                            <span>Descargar CV</span>
+                            <a 
+                                href="/MorenaMartin-CV-Frontend.pdf" 
+                                download 
+                            >Descargar CV</a>
                         </button>
 
                     </div>
