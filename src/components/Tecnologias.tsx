@@ -79,7 +79,7 @@ const herramientas = [
 
 const Teconologias = ({ id }: { id: string }) => {
     return (
-        <div id={id} className="px-40 pb-20 mt-28">
+        <div id={id} className="px-4 pb-20 lg:px-40 mt-28">
             <div className="flex flex-col items-center">
                 <h1 className="mb-2 text-4xl font-bold text-gray-700">Tecnologías</h1>
                 <div className="w-20 h-1 bg-violet-600"></div>
@@ -88,7 +88,7 @@ const Teconologias = ({ id }: { id: string }) => {
 
             <div className="flex flex-col items-center mt-16">
                 <h2 className="text-xl font-bold text-gray-800">Frontend</h2>
-                <div className="flex flex-row w-full gap-4 py-6">
+                <div className="grid w-full grid-cols-2 gap-4 py-6 md:px-12 justify-items-center md:flex md:flex-row md:flex-wrap">
                     {tecnologiasFrontend.map((tec, index) => (
                         <div key={index} className="flex flex-col items-center justify-center gap-4 duration-500 hover:scale-105 w-40 h-36 rounded-xl bg-[#f4f5f7] hover:shadow-md  hover:shadow-gray-400">
                             <Image src={tec.icono} alt="react logo"width={50} height={50}/>
@@ -101,7 +101,7 @@ const Teconologias = ({ id }: { id: string }) => {
 
             <div className="flex flex-col items-center mt-16">
                 <h2 className="text-xl font-bold text-gray-800">Backend & Database</h2>
-                <div className="flex flex-row justify-start w-full gap-4 py-6">
+                <div className="grid justify-start w-full grid-cols-2 gap-4 py-6 md:flex md:flex-row md:px-12">
                     {tecnologiasBackend.map((tec, index) => (
                         <div key={index} className="flex flex-col items-center justify-center gap-4 duration-500 hover:scale-105 w-40 h-36 rounded-xl bg-[#f4f5f7] hover:shadow-md  hover:shadow-gray-400">
                             <Image src={tec.icono} alt="react logo"width={50} height={50}/>
@@ -114,7 +114,7 @@ const Teconologias = ({ id }: { id: string }) => {
 
             <div className="flex flex-col items-center mt-16">
                 <h2 className="text-xl font-bold text-gray-800">Herramientas</h2>
-                <div className="flex flex-row justify-start w-full gap-4 py-6">
+                <div className="grid justify-start w-full grid-cols-2 gap-4 py-6 md:flex md:flex-row md:px-12">
                     {herramientas.map((tec, index) => (
                         <div key={index} className="flex flex-col items-center justify-center gap-4 duration-500 hover:scale-105 w-40 h-36 rounded-xl bg-[#f4f5f7] hover:shadow-md  hover:shadow-gray-400">
                             <Image src={tec.icono} alt="react logo"width={50} height={50}/>

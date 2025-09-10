@@ -30,11 +30,11 @@ const ProjectCard = ({ nombre, descripcion, imagen, tags, deploy, github, onOpen
       }}
       className="relative overflow-hidden shadow-md cursor-pointer bg-violet-50 shadow-gray-700 w-72 h-80 rounded-xl"
     >
-      <div className="absolute z-30 w-full py-2 text-lg font-semibold text-center text-gray-900 bg-white">
+      <div className="absolute z-20 w-full py-2 text-lg font-semibold text-center text-gray-900 bg-white">
         {nombre}
       </div>
 
-      <div className="relative z-20 h-[100%] overflow-hidden">
+      <div className="relative z-10 h-[100%] overflow-hidden">
         <Image src={imagen} alt={nombre} fill className={`object-cover duration-700 ${hover && "scale-110"}`} />
 
         <div className={`absolute inset-0 flex justify-center items-start pt-24 bg-black bg-opacity-50 text-white transition-opacity ${hover ? "opacity-100" : "opacity-0"}`}>
@@ -59,7 +59,7 @@ const ProjectCard = ({ nombre, descripcion, imagen, tags, deploy, github, onOpen
         </div>
       </div>
 
-      <div className={`absolute bottom-0 z-40 flex flex-col gap-3 py-4 px-4 font-medium bg-white text-start rounded-b-xl ${mostrar ? "opacity-100 translate-y-0 duration-200 ease-in transition-all" : "opacity-0 translate-y-10 pointer-events-none"}`}>
+      <div className={`absolute bottom-0 z-30 flex flex-col gap-3 py-4 px-4 font-medium bg-white text-start rounded-b-xl ${mostrar ? "opacity-100 translate-y-0 duration-200 ease-in transition-all" : "opacity-0 translate-y-10 pointer-events-none"}`}>
         <p className="text-sm text-gray-600">{descripcion}</p>
         <ul className="flex flex-row flex-wrap items-center justify-start gap-2 text-sm">
           {tags.slice(0, 5).map((tag, i) => (

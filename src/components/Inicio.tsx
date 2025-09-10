@@ -5,19 +5,20 @@ import fotoPerfil from "@/assets/yo.png"
 
 const Inicio = ({ id }: { id: string }) => {
     return (
-        <div id={id} className="flex justify-center py-20 ">
-            <div className="grid grid-cols-2 justify-between w-[95%] pt-20 px-32">
-                <div className="flex flex-col gap-4">
-                    <h1 className="text-6xl font-bold"><span className="text-gray-800">Hola, soy</span> <br/>
+        <div id={id} className="flex justify-center pt-20 h-fit md:h-[800px]">      
+            <div className="grid grid-rows-2 justify-center md:grid-cols-2 md:justify-between h-fit w-[95%] pt-20 lg:px-32">
+                
+                <div className="flex flex-col w-[100%] h-fit gap-4">
+                    <h1 className="text-5xl font-bold md:text-6xl"><span className="text-gray-800">Hola, soy</span> <br/>
                         <span className="text-violet-600">Desarrolladora <br/>
                         Full Stack</span></h1>
                     <p className="text-xl font-semibold text-gray-500">Especializada en crear experiencias web modernas y funcionales. Apasionada por el código limpio, el diseño intuitivo y las nuevas tecnologías.</p>
                     
-                    <div className="flex flex-row gap-4 mt-6">
+                    <div className="flex flex-col gap-4 mt-6 lg:flex-row">
                         <button className="py-3 font-semibold text-white rounded-lg bg-violet-600 hover:bg-violet-800 px-7">Ver Proyectos</button>
                         <button className="border-[1px] border-gray-300 hover:border-gray-500 px-7 py-3 rounded-lg text-gray-800 font-semibold">Contactar</button>
 
-                        <button className="flex flex-row items-center text-gray-600 hover:text-violet-800"> 
+                        <button className="flex flex-row items-center justify-center text-gray-600 hover:text-violet-800"> 
                             <Download className="w-10 h-5"/> 
                             <span>Descargar CV</span>
                         </button>
@@ -31,11 +32,11 @@ const Inicio = ({ id }: { id: string }) => {
                     </div>
                 </div>
                 
-                <div className="pt-10 justify-items-end">
+                <div className="flex justify-center pt-10 h-fit md:justify-end">
                     <div className="relative flex items-center justify-center overflow-hidden border-4 rounded-full h-80 w-80 border-violet-600">
                         <Image src={fotoPerfil} alt="profilePicture"/>
                     </div>
-                    <div className="absolute flex items-center justify-center w-20 h-20 text-sm font-bold text-white bg-green-500 rounded-full top-48 right-40">
+                    <div className="absolute flex items-center justify-center w-20 h-20 text-sm font-bold text-white bg-green-500 rounded-full right-8 md:top-48 md:right-6 lg:right-40">
                         Disponible
                     </div>
                 </div>

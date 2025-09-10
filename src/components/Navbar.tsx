@@ -25,7 +25,7 @@ const links = [
     }, []);
 
     return(
-        <div className={`flex flex-row items-center z-50 w-[100%] bg-white px-28 h-16 fixed ${scrolled && "drop-shadow-lg"}`}>
+        <div className={`flex flex-row items-center z-40 w-screen bg-white h-16 fixed ${scrolled && "drop-shadow-lg"}`}>
             <div className="flex flex-row gap-8 m-auto text-sm">
                {links.map((link) => (
                 <a

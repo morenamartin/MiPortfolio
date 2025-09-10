@@ -25,7 +25,7 @@ const Proyectos = ({ id }: { id: string }) => {
     const {abrirModal, cerrarModal, modal} =useModalContext()
 
     return (
-        <div id={id} className="px-40 pb-20 mt-16">
+        <div id={id} className="px-4 pb-20 mt-16 lg:px-40">
             <div className="flex flex-col items-center">
                 <h1 className="mb-2 text-4xl font-bold text-gray-700">Proyectos</h1>
                 <div className="w-20 h-1 bg-violet-600"></div>
@@ -33,7 +33,7 @@ const Proyectos = ({ id }: { id: string }) => {
 
 
             <div className="mt-10">
-                <div className="grid grid-cols-3 gap-6 m-auto w-fit">
+                <div className="grid grid-cols-3 gap-6 md:m-auto w-fit">
                     <button className={`${filtroActivo === "Todos" && "bg-violet-500 text-white"} px-6 py-1 rounded-full`} onClick={() => setFiltroActivo("Todos")}>Todos</button>
                     <button className={`${filtroActivo === "Henry" && "bg-violet-500 text-white"} px-6 py-1 rounded-full`} onClick={() => setFiltroActivo("Henry")}>Henry</button>
                     <button className={`${filtroActivo === "Freelance" && "bg-violet-500 text-white"} px-6 py-1 rounded-full`} onClick={() => setFiltroActivo("Freelance")}>Freelance</button>
@@ -41,7 +41,7 @@ const Proyectos = ({ id }: { id: string }) => {
             </div>
 
 
-            <div className="grid grid-cols-3 gap-5 mt-10 justify-items-center">
+            <div className="flex flex-col items-center gap-10 mt-10 lg:px-0 md:px-20 lg:gap-5 md:grid md:grid-cols-2 lg:grid-cols-3 justify-items-center">
                 {(filtroActivo === "Todos" ? categories : categories.filter(proy => proy.tipo === filtroActivo))
               .map(proy => (
                 <ProjectCard
@@ -61,7 +61,7 @@ const Proyectos = ({ id }: { id: string }) => {
             </div>
 
            {modal && proyectoActivo && (
-            <div className="fixed top-0 left-0 z-40 w-full h-full flex items-center justify-center px-40 bg-[#00000094]">
+            <div className="fixed top-0 left-0 z-40 w-full h-full flex items-center justify-center px-4 md:px-20 lg:px-40 bg-[#00000094]">
               <ModalEcommerce
                 nombre={proyectoActivo.nombre}
                 descripcion={proyectoActivo.descripcion}

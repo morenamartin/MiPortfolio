@@ -35,18 +35,18 @@ const habilidades = [
 
 const Habilidades = ({ id }: { id: string }) => {
     return (
-        <div id={id} className="px-40 pb-20 mt-36">
+        <div id={id} className="pb-20 md:px-40 mt-36">
             <div className="flex flex-col items-center">
-                <h1 className="mb-2 text-4xl font-bold text-gray-700">Habilidades Blandas</h1>
+                <h1 className="mb-2 text-4xl font-bold text-gray-700">Soft Skills</h1>
                 <div className="w-20 h-1 bg-violet-600"></div>
             </div>
 
-            <div className="grid grid-cols-3 gap-6 px-20 justify-items-center mt-14">
+            <div className="grid grid-cols-1 gap-12 lg:px-20 md:grid-cols-2 lg:grid-cols-3 justify-items-center mt-14">
 
             {
                 habilidades.map((hab, index) => (
                     <div key={index} className="flex flex-col items-center justify-center w-64 h-40 gap-4 rounded-lg shadow-md shadow-gray-400 hover:shadow-gray-500 hover:shadow-md">
-                        <div className={`bg-[${hab.color}] rounded-xl w-12 h-12 flex items-center justify-center text-white`}>
+                        <div className={`bg-[#955cf6] rounded-xl w-12 h-12 flex items-center justify-center text-white`}>
                             {hab.icono}
                         </div>
                         <span className="text-base font-semibold text-gray-800">{hab.texto}</span>
