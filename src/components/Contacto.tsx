@@ -7,7 +7,7 @@ const Contacto = ({ id }: { id: string }) => {
                 <h1 className="mb-2 text-4xl font-bold text-gray-700">Contacto</h1>
                 <div className="w-20 h-1 bg-violet-600"></div>
             </div>
-            <h2 className="mt-8 text-xl text-center text-gray-600 lg:px-40">¿Tienes un proyecto en mente? Me encantaría conocer más sobre tu idea y cómo puedo ayudarte a hacerla realidad.</h2>
+            <h2 className="mt-8 text-xl text-center text-gray-600 lg:px-40">¿Tienes un proyecto en mente?<br /> Me encantaría conocer más sobre tu idea y cómo puedo ayudarte a hacerla realidad.</h2>
 
             <div className="gap-20 mt-12 md:grid md:grid-cols-2">
                 <div>

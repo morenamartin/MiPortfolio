@@ -30,7 +30,7 @@ export const categories = [
     descripcionModal: "Proyecto final de mi formación en Henry, desarrollado en equipo durante 3 semanas. Plataforma digital de salud mental que conecta pacientes con psicólogos mediante recomendaciones personalizadas, filtros por síntomas/especialidades y agendamiento con pago online. Mi rol: desarrollo Frontend junto con dos compañeros, colaborando con el equipo Backend. Mi aporte principal fue construir una interfaz clara, usable y con una experiencia de usuario fluida.",
     aprendi: "Aprendí a colaborar efectivamente en un equipo, implementar pasarelas de pago, crear filtros combinados, usar Google Maps y gestionar la persistencia de datos en formularios complejos con múltiples componentes.",
     imagen: "/proyectos/psymatch.jpg",
-    tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Formik + Yup", "Flowbite + Flowbite-React", "React Toastify", "MercadoPago"],
+    tags: ["Next.js", "Tailwind CSS", "TypeScript", "React", "Formik + Yup", "Flowbite + Flowbite-React", "React Toastify", "MercadoPago"],
     deploy: "https://psymatch-frontend-app.onrender.com/",
     github: "https://github.com/PsyMatch/PsyMatch-Frontend"
   }

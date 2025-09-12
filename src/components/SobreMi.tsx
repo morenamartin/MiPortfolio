@@ -2,7 +2,7 @@ import { Code, CoffeeIcon, Heart } from "lucide-react"
 
 const SobreMi = ({ id }: { id: string }) => {
     return (
-        <div id={id} className="px-4 lg:px-40 h-fit mb-14">
+        <div id={id} className="px-4 md:mt-40 lg:mt-0 lg:px-40 h-fit mb-14">
             <div className="flex flex-col items-center">
                 <h1 className="mb-2 text-4xl font-bold text-gray-700">Sobre mí</h1>
                 <div className="w-20 h-1 bg-violet-600"></div>
@@ -11,8 +11,8 @@ const SobreMi = ({ id }: { id: string }) => {
             <div className="mt-20 md:grid gap-14 lg:gap-0 md:grid-row-2 lg:grid-cols-2 place-items-center">
                 
                 <div className="flex flex-col gap-6 text-center lg:text-start">
-                    <p className="text-xl font-normal text-gray-700 md:text-lg">Soy una desarrolladora frontend apasionada por crear experiencias digitales excepcionales. Mi formación en Henry me ha proporcionado una base sólida en tecnologías modernas y metodologías ágiles.</p>
-                    <p className="text-xl font-normal text-gray-700 md:text-lg">Me especializo en React, JavaScript y el ecosistema de desarrollo web moderno. Disfruto trabajando en equipos colaborativos y estoy siempre buscando aprender nuevas tecnologías y mejores prácticas.</p>
+                    <p className="text-xl font-normal text-gray-700 md:text-lg">Soy una desarrolladora frontend apasionada por crear experiencias digitales excepcionales.<br /> Mi formación en Henry me ha proporcionado una base sólida en tecnologías modernas y metodologías ágiles.</p>
+                    <p className="text-xl font-normal text-gray-700 md:text-lg">Me especializo en React, JavaScript y el ecosistema de desarrollo web moderno.<br /> Disfruto trabajando en equipos colaborativos y estoy siempre buscando aprender nuevas tecnologías y mejores prácticas.</p>
                     <p className="text-xl font-normal text-gray-700 md:text-lg">Actualmente trabajo en proyectos freelance mientras busco oportunidades para unirme a un equipo dinámico donde pueda contribuir y seguir creciendo profesionalmente.</p>
                 </div>
 
