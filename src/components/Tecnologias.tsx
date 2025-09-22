@@ -4,6 +4,7 @@ import javaLogo from "@/assets/frontend/javascript-original.svg"
 import htmlLogo from "@/assets/frontend/html5-original.svg"
 import cssLogo from "@/assets/frontend/css3-original.svg"
 import tailwindLogo from "@/assets/frontend/Tailwind_CSS_Logo.svg.png"
+import logoNext from "@/assets/frontend/logoNext.png"
 
 import expressLogo from "@/assets/backend/express-original.svg"
 import postgresLogo from "@/assets/backend/postgresql-original.svg"
@@ -20,6 +21,10 @@ const tecnologiasFrontend = [
     {
         icono: reactLogo,
         nombre: "React"
+    },
+    {
+        icono: logoNext,
+        nombre: "NextJS"
     },
     {
         icono: typescriptLogo,
