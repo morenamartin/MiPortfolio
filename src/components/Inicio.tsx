@@ -72,7 +72,7 @@ const Inicio = ({ id }: { id: string }) => {
                     <div className="relative flex items-center justify-center overflow-hidden border-4 rounded-full h-80 w-80 border-violet-600">
                         <Image src={fotoPerfil} alt="profilePicture"/>
                     </div>
-                    <div className="absolute flex items-center justify-center w-20 h-20 text-sm font-bold text-white bg-green-500 rounded-full right-8 md:top-10 md:right-0 lg:top-10 lg:right-1">
+                    <div className="absolute flex items-center justify-center w-20 h-20 text-sm font-bold text-white bg-green-500 rounded-full animate-bounce right-8 md:top-10 md:right-0 lg:top-10 lg:right-1">
                         Disponible
                     </div>
                 </div>

@@ -19,7 +19,7 @@ export const categories = [
     descripcionModal: "AscensoresMG es una página web diseñada para presentar los servicios de mantenimiento, reparación y conservación de ascensores de la empresa. El sitio es principalmente estático, con un enfoque en transmitir confianza, profesionalismo y facilitar el contacto con clientes potenciales.",
     imagen: "/proyectos/imagenHome.png",
     tags: ["Next.js", "React", "Tailwind", "TypeScript", "Flowbite-React", "Formik + Yup", ],
-    deploy: "/en-proceso",
+    deploy: "https://www.ascensoresmgsrl.com.ar/",
     github: "https://github.com/morenamartin/AscensoresMG"
   },
   {
@@ -33,5 +33,17 @@ export const categories = [
     tags: ["Next.js", "Tailwind CSS", "TypeScript", "React", "Formik + Yup", "Flowbite + Flowbite-React", "React Toastify", "MercadoPago"],
     deploy: "https://psymatch-frontend-app.onrender.com/",
     github: "https://github.com/PsyMatch/PsyMatch-Frontend"
+  },
+  {
+    id: 4,
+    nombre: "Páginas Compartidas",
+    tipo: "Freelance",
+    descripcion: "Plataforma para intercambiar libros entre usuarios.",
+    descripcionModal: "Plataforma web que facilita el intercambio de libros entre usuarios. Los usuarios pueden registrarse, crear perfiles, listar libros disponibles para intercambio y buscar libros ofrecidos por otros usuarios. La plataforma incluye una sección donde se pueden hacer comunidades para colegios, la idea es que los estudiantes puedan compartir libros entre ellos de manera sencilla y organizada.",
+    aprendi: "Desarrollé habilidades en la creación de plataformas de intercambio, gestión de perfiles de usuario y listados dinámicos. Aprendí a implementar funcionalidades de búsqueda y filtrado, así como a diseñar una interfaz intuitiva para mejorar la experiencia del usuario.",
+    imagen: "/proyectos/paginascompartidas.png",
+    tags: ["Next.js", "Tailwind CSS", "TypeScript", "React", "NestJS", "PostgreSQL", "TypeORM"],
+    deploy: "en-proceso",
+    github: "https://github.com/morenamartin/paginascompartidas-frontend"
   }
 ]
