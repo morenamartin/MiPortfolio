@@ -25,8 +25,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
+    <html lang="en" className="w-full p-0 m-0">
+      <body className={`${geistSans.variable} ${geistMono.variable} w-full m-0 p-0 overflow-x-hidden`} suppressHydrationWarning>
         <ModalProvider>
           <Navbar />
           {children}

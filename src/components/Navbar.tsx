@@ -10,6 +10,7 @@ const links = [
   { href: "#sobre-mi", label: "Sobre mí" },
   { href: "#habilidades", label: "Soft Skills" },
   { href: "#tecnologias", label: "Tecnologías" },
+  { href: "#educacion-experiencia", label: "Educación y Experiencia" },
   { href: "#proyectos", label: "Proyectos" },
   { href: "#contacto", label: "Contacto" },
 ];
@@ -26,7 +27,7 @@ const links = [
     const [menu, setMenu] = useState(false)
 
     return(
-        <div className={`flex flex-row justify-center items-center z-40 w-screen bg-white h-16 fixed ${scrolled && "drop-shadow-lg"}`}>
+        <div className={`flex flex-row justify-center items-center z-40 w-full bg-transparent h-16 fixed ${scrolled && "drop-shadow-lg"}`}>
             {/* Botón de menú hamburguesa */}
             <button
                 className="flex items-center justify-end w-full pr-4 md:hidden focus:outline-none"
@@ -84,7 +85,7 @@ const links = [
                 <a
                     key={link.href}
                     href={link.href}
-                    className="px-2 py-2 font-bold text-gray-600 hover:text-gray-900"
+                    className="px-2 py-2 font-bold text-white hover:text-gray-200 drop-shadow-lg"
                     onClick={(e) => {
                         e.preventDefault();
                         const section = document.querySelector(link.href);

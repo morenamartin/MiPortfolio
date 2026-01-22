@@ -1,20 +1,29 @@
-"use client"
-import Contacto from "@/components/Contacto";
-import Habilidades from "@/components/Habilidades";
-import Inicio from "@/components/Inicio";
-import Proyectos from "@/components/Proyectos";
-import SobreMi from "@/components/SobreMi";
-import Teconologias from "@/components/Tecnologias";
+import Inicio from "@/components/sections/Inicio";
+import SobreMi from "@/components/sections/SobreMi";
+import SoftSkills from "@/components/sections/SoftSkills";
+import SmoothScroll from "@/components/SmoothScroll";
 
 export default function Home() {
   return (
-    <>
-      <Inicio id="inicio" />
-      <SobreMi id="sobre-mi" />
-      <Habilidades id="habilidades" />
-      <Teconologias id="tecnologias" />
-      <Proyectos id="proyectos" />
-      <Contacto id="contacto" />
-    </>
+    <SmoothScroll>
+      <section id="inicio" className="section">
+        <Inicio />
+      </section>
+      <section id="sobre-mi" className="flex flex-col items-center justify-center bg-black section" data-has-subscroll="true">
+        <SobreMi />
+      </section>
+      <section id="habilidades" className="section">
+        <SoftSkills />
+      </section>
+      <section id="tecnologias" className="bg-yellow-500 section">
+        <h1 className="text-6xl font-bold text-white">TECNOLOGÍAS</h1>
+      </section>
+      <section id="proyectos" className="bg-purple-500 section">
+        <h1 className="text-6xl font-bold text-white">PROYECTOS</h1>
+      </section>
+      <section id="contacto" className="bg-pink-500 section">
+        <h1 className="text-6xl font-bold text-white">CONTACTO</h1>
+      </section>
+    </SmoothScroll>
   )
 }
