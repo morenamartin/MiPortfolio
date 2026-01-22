@@ -9,7 +9,7 @@ const links = [
   { href: "#inicio", label: "Inicio" },
   { href: "#sobre-mi", label: "Sobre mí" },
   { href: "#habilidades", label: "Soft Skills" },
-  { href: "#tecnologias", label: "Tecnologías" },
+  { href: "#tecnologias", label: "Tecnologías y Programas" },
   { href: "#educacion-experiencia", label: "Educación y Experiencia" },
   { href: "#proyectos", label: "Proyectos" },
   { href: "#contacto", label: "Contacto" },

@@ -1,6 +1,7 @@
 import Inicio from "@/components/sections/Inicio";
 import SobreMi from "@/components/sections/SobreMi";
 import SoftSkills from "@/components/sections/SoftSkills";
+import Tecnologias from "@/components/sections/Tecnologias";
 import SmoothScroll from "@/components/SmoothScroll";
 
 export default function Home() {
@@ -15,8 +16,8 @@ export default function Home() {
       <section id="habilidades" className="section">
         <SoftSkills />
       </section>
-      <section id="tecnologias" className="bg-yellow-500 section">
-        <h1 className="text-6xl font-bold text-white">TECNOLOGÍAS</h1>
+      <section id="tecnologias" className="bg-black section">
+        <Tecnologias />
       </section>
       <section id="proyectos" className="bg-purple-500 section">
         <h1 className="text-6xl font-bold text-white">PROYECTOS</h1>
