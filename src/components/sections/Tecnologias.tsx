@@ -27,7 +27,7 @@ const Tecnologias = () => {
     { name: "insomnia", displayName: "Insomnia", years: 1 },
     { name: "postman", displayName: "Postman", years: 1 },
     { name: "git", displayName: "Git", years: 4 },
-    { name: "blender", displayName: "Blender", years: 4 },
+    { name: "blender", displayName: "Blender", years: 4 }
   ];
 
   useEffect(() => {
