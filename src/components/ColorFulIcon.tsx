@@ -3,13 +3,19 @@ export default function ColorfulIcon({
   className = "w-16 h-16",
   forceActive = false,
   displayName,
-  years
+  years,
+  yearText,
+  yearsText,
+  experienceText
 }:{
     name: string;
     className?: string;
     forceActive?: boolean;
     displayName?: string;
     years?: number;
+    yearText?: string;
+    yearsText?: string;
+    experienceText?: string;
 }) {
   return (
     <div className="relative group">
@@ -28,14 +34,14 @@ export default function ColorfulIcon({
       />
       
       {/* Tooltip */}
-      {displayName && years && (
-        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10">
-          <div className="bg-white text-black px-4 py-2 rounded-lg shadow-lg whitespace-nowrap">
+      {displayName && years && yearText && yearsText && experienceText && (
+        <div className="absolute z-10 mb-2 transition-opacity duration-300 -translate-x-1/2 opacity-0 pointer-events-none bottom-full left-1/2 group-hover:opacity-100">
+          <div className="px-4 py-2 text-black bg-white rounded-lg shadow-lg whitespace-nowrap">
             <p className="font-semibold">{displayName}</p>
-            <p className="text-sm text-gray-600">{years} {years === 1 ? 'año' : 'años'} de experiencia</p>
+            <p className="text-sm text-gray-600">{years} {years === 1 ? yearText : yearsText} {experienceText}</p>
           </div>
           {/* Piquito */}
-          <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1">
+          <div className="absolute -mt-1 -translate-x-1/2 top-full left-1/2">
             <div className="border-8 border-transparent border-t-white"></div>
           </div>
         </div>

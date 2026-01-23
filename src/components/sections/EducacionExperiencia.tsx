@@ -1,11 +1,93 @@
 "use client";
 import { useRef, useState } from 'react';
 import TimelineItem from './TimelineItem';
-import { experienciasEducacion } from '@/helpers/educacionExperiencia';
+import { useTranslation } from '@/hooks/useTranslation';
 
 const EducacionExperiencia = () => {
+    const { t } = useTranslation();
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const [currentIndex, setCurrentIndex] = useState(0);
+
+    // Crear experiencias usando traducciones
+    const experienciasEducacion = [
+        {
+            id: 1,
+            titulo: t('educacionExperiencia.item1.titulo'),
+            fecha: t('educacionExperiencia.item1.fecha'),
+            lugar: t('educacionExperiencia.item1.lugar'),
+            descripcion: t('educacionExperiencia.item1.descripcion'),
+            tecnologias: ["/icons/tinkercad.svg"]
+        },
+        {
+            id: 2,
+            titulo: t('educacionExperiencia.item2.titulo'),
+            fecha: t('educacionExperiencia.item2.fecha'),
+            lugar: t('educacionExperiencia.item2.lugar'),
+            descripcion: t('educacionExperiencia.item2.descripcion'),
+            tecnologias: ["/icons/canva.svg"]
+        },
+        {
+            id: 3,
+            titulo: t('educacionExperiencia.item3.titulo'),
+            fecha: t('educacionExperiencia.item3.fecha'),
+            lugar: t('educacionExperiencia.item3.lugar'),
+            descripcion: t('educacionExperiencia.item3.descripcion'),
+            tecnologias: ["/icons/blender.svg"]
+        },
+        {
+            id: 4,
+            titulo: t('educacionExperiencia.item4.titulo'),
+            fecha: t('educacionExperiencia.item4.fecha'),
+            lugar: t('educacionExperiencia.item4.lugar'),
+            descripcion: t('educacionExperiencia.item4.descripcion'),
+            tecnologias: [
+                "/icons/html5.svg",
+                "/icons/css3.svg",
+                "/icons/javascript.svg",
+                "/icons/github.svg",
+                "/icons/git.svg"
+            ]
+        },
+        {
+            id: 5,
+            titulo: t('educacionExperiencia.item5.titulo'),
+            fecha: t('educacionExperiencia.item5.fecha'),
+            lugar: t('educacionExperiencia.item5.lugar'),
+            descripcion: t('educacionExperiencia.item5.descripcion'),
+            tecnologias: [
+                "/icons/html5.svg",
+                "/icons/css3.svg",
+                "/icons/javascript.svg",
+                "/icons/react.svg",
+                "/icons/typescript.svg",
+                "/icons/nestjs.svg",
+                "/icons/nextjs-icon.svg",
+                "/icons/postgresql.svg",
+                "/icons/github.svg",
+                "/icons/git.svg",
+                "/icons/tailwindcss.svg",
+                "/icons/mongodb.svg"
+            ]
+        },
+        {
+            id: 6,
+            titulo: t('educacionExperiencia.item6.titulo'),
+            fecha: t('educacionExperiencia.item6.fecha'),
+            lugar: t('educacionExperiencia.item6.lugar'),
+            descripcion: t('educacionExperiencia.item6.descripcion'),
+            tecnologias: [
+                "/icons/react.svg",
+                "/icons/typescript.svg",
+                "/icons/nestjs.svg",
+                "/icons/nextjs-icon.svg",
+                "/icons/postgresql.svg",
+                "/icons/github.svg",
+                "/icons/git.svg",
+                "/icons/tailwindcss.svg",
+                "/icons/supabase.svg"
+            ]
+        }
+    ];
 
     const scrollToIndex = (index: number) => {
         if (!scrollContainerRef.current) return;

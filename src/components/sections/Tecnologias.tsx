@@ -1,8 +1,10 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import ColorfulIcon from "../ColorFulIcon";
+import { useTranslation } from '@/hooks/useTranslation';
 
 const Tecnologias = () => {
+  const { t } = useTranslation();
   const [activeIndices, setActiveIndices] = useState<number[]>([]);
   const [hasAnimated, setHasAnimated] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -98,7 +100,7 @@ const Tecnologias = () => {
 
   return (
     <div ref={sectionRef} className="py-12 bg-black">
-        <div className="grid grid-cols-6 w-full gap-12">
+        <div className="grid w-full grid-cols-6 gap-12">
           {technologies.map((tech, index) => (
             <ColorfulIcon
               key={tech.name}
@@ -107,6 +109,9 @@ const Tecnologias = () => {
               years={tech.years}
               className={widthIcon}
               forceActive={activeIndices.includes(index)}
+              yearText={t('tecnologias.year')}
+              yearsText={t('tecnologias.years')}
+              experienceText={t('tecnologias.experience')}
             />
           ))}
         </div>

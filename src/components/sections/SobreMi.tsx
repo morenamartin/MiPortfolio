@@ -1,8 +1,10 @@
 "use client"
 import { Code } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useTranslation } from '@/hooks/useTranslation';
 
 const SobreMi = () => {
+    const { t } = useTranslation();
     const [scrollProgress, setScrollProgress] = useState(0);
 
     useEffect(() => {
@@ -92,15 +94,15 @@ const SobreMi = () => {
             >
                 <div className="px-6">
                     <p className="text-base leading-relaxed text-left">
-                       Full Stack Web Developer con foco en frontend y experiencia práctica en proyectos reales y pasantías intensivas. Formada en Henry, con base sólida en desarrollo web moderno y metodologías ágiles. 
+                       {t('sobreMi.paragraph1')}
                     </p>
                     <br />
                     <p className="text-base leading-relaxed text-left">
-                       Trabajo con React, TypeScript, Next.js y Tailwind CSS, integrando APIs REST y colaborando con backends en Node.js, Express y bases de datos SQL. Tengo experiencia en resolución de bugs, mejoras de funcionalidades y desarrollo de interfaces enfocadas en la usabilidad y la mantenibilidad del código.
+                       {t('sobreMi.paragraph2')}
                     </p>
                     <br />
                     <p className="text-base leading-relaxed text-left">
-                        Uso IA como apoyo al desarrollo, validando las soluciones con criterio técnico.Me destaco por mi organización, aprendizaje continuo, comunicación efectiva y adaptación a entornos dinámicos, buscando seguir creciendo en equipos donde pueda aportar valor y profundizar mis habilidades técnicas.
+                        {t('sobreMi.paragraph3')}
                     </p>
                 </div>
                 
@@ -109,30 +111,30 @@ const SobreMi = () => {
                         <div className="p-2 rounded-lg bg-violet-600">
                             <Code width={22} height={22}></Code>
                         </div>
-                        <span className="text-lg font-semibold">Desarrollo Full Stack</span>
+                        <span className="text-lg font-semibold">{t('sobreMi.skill1Title')}</span>
                     </div>
                     <p className="text-base leading-relaxed text-left">
-                       Experiencia en desarrollo de aplicaciones web completas, trabajando tanto en frontend como en backend. Construyo soluciones funcionales y escalables integrando interfaces, lógica de negocio, APIs y bases de datos.
+                       {t('sobreMi.skill1Description')}
                     </p>
                     <br />
                     <div className="flex items-center gap-3 mb-2">
                         <div className="p-2 rounded-lg bg-violet-600">
                             <Code width={22} height={22}></Code>
                         </div>
-                        <span className="text-lg font-semibold">Arquitectura y Resolución de Problemas</span>
+                        <span className="text-lg font-semibold">{t('sobreMi.skill2Title')}</span>
                     </div>
                     <p className="text-base leading-relaxed text-left">
-                       Enfoque en entender el problema completo, proponer soluciones claras y mantener un código ordenado, mantenible y alineado a buenas prácticas.
+                       {t('sobreMi.skill2Description')}
                     </p>
                     <br />
                     <div className="flex items-center gap-3 mb-2">
                         <div className="p-2 rounded-lg bg-violet-600">
                             <Code width={22} height={22}></Code>
                         </div>
-                        <span className="text-lg font-semibold">Aprendizaje Continuo</span>
+                        <span className="text-lg font-semibold">{t('sobreMi.skill3Title')}</span>
                     </div>
                     <p className="text-base leading-relaxed text-left">
-                       Siempre explorando nuevas tecnologías, herramientas y metodologías para mantenerme al día con las últimas tendencias del desarrollo web y mejorar la calidad de las soluciones que construyo.
+                       {t('sobreMi.skill3Description')}
                     </p>
                 </div>
             </div>

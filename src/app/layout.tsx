@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { ModalProvider } from "@/context/moduloEcommerce";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,10 +28,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="w-full p-0 m-0">
       <body className={`${geistSans.variable} ${geistMono.variable} w-full m-0 p-0 overflow-x-hidden`} suppressHydrationWarning>
-        <ModalProvider>
-          <Navbar />
-          {children}
-        </ModalProvider>
+        <LanguageProvider>
+          <ModalProvider>
+            <Navbar />
+            {children}
+          </ModalProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

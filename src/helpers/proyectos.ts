@@ -15,14 +15,13 @@ export const proyectos: Proyecto[] = [
         nombre: "Ascensores MG",
         descripcion: [
             "AscensoresMG es una página web diseñada para presentar los servicios de mantenimiento, reparación y conservación de ascensores de la empresa. El sitio es principalmente estático, con un enfoque en transmitir confianza, profesionalismo y facilitar el contacto con clientes potenciales.",
-            "Mi rol: Full-Stack, construyendo un frontend moderno y responsivo, con formularios de contacto seguros y optimizados, y colaborando en la integración con el backend.",
-            "Este proyecto me permitió crecer en el desarrollo full-stack, aprendiendo a crear interfaces profesionales y enfocadas en la experiencia del usuario, a gestionar formularios complejos, validación segura y optimizar el rendimiento de la aplicación. Además, me dio mi primera experiencia real en un entorno profesional, entendiendo la importancia de entregar soluciones confiables, claras y de calidad."
+            "Este proyecto me permitió crecer en el desarrollo frontend, aprendiendo a crear interfaces profesionales y enfocadas en la experiencia del usuario, y a optimizar el rendimiento de la aplicación. Además, me dio mi primera experiencia real en un entorno profesional, entendiendo la importancia de entregar soluciones confiables, claras y de calidad."
         ],
-        miRol: "Full-Stack, construyendo un frontend moderno y responsivo, con formularios de contacto seguros y optimizados, y colaborando en la integración con el backend.",
+        miRol: "Full-Stack Developer",
         tecnologias: ["Next.js", "React", "Tailwind", "TypeScript", "Flowbite-React", "Formik + Yup"],
         imagen: "/proyectos/ascensoresmg.png",
         linkProyecto: "https://www.ascensoresmgsrl.com.ar/",
-        linkCodigo: "https://github.com/morenamartin/AscensoresMG"
+        linkCodigo: ""
     },
     {
         id: 2,
@@ -30,12 +29,12 @@ export const proyectos: Proyecto[] = [
         descripcion: [
             "Proyecto final de mi formación en Henry, desarrollado en equipo durante 3 semanas. Plataforma digital de salud mental que conecta pacientes con psicólogos mediante recomendaciones personalizadas, filtros por síntomas/especialidades y agendamiento con pago online.",
             "Mi rol: desarrollo Frontend junto con dos compañeros, colaborando con el equipo Backend. Mi aporte principal fue construir una interfaz clara, usable y con una experiencia de usuario fluida.",
-            "Aprendí a colaborar efectivamente en un equipo, implementar pasarelas de pago, crear filtros combinados, usar Google Maps y gestionar la persistencia de datos en formularios complejos con múltiples componentes."
+            "Aprendí a colaborar efectivamente en un equipo, implementar pasarelas de pago, crear filtros combinados, integrar APIs de Google Maps y gestionar la persistencia de datos en formularios complejos con múltiples componentes."
         ],
         miRol: "Desarrollador Frontend en equipo de 3",
         tecnologias: ["Next.js", "Tailwind CSS", "TypeScript", "React", "Formik + Yup", "MercadoPago"],
         imagen: "/proyectos/psymatch.jpg",
-        linkProyecto: "https://psymatch-frontend-app.onrender.com/",
+        linkProyecto: "https://psy-match-frontend.vercel.app/",
         linkCodigo: "https://github.com/PsyMatch/PsyMatch-Frontend"
     },
     {

@@ -1,114 +1,178 @@
+'use client';
+
 import Image from 'next/image';
-import { Proyecto } from '@/helpers/proyectos';
+import { useState, useEffect, useRef } from 'react';
+import { useTranslation } from '@/hooks/useTranslation';
 
 interface ProyectoCardProps {
-    proyecto: Proyecto;
-    reversed?: boolean;
+    proyecto: {
+        id: number;
+        nombre: string;
+        descripcion: string[];
+        miRol: string;
+        tecnologias: string[];
+        imagen: string;
+        linkProyecto: string;
+        linkCodigo: string;
+    };
+    index: number;
 }
 
-const ProyectoCard = ({ proyecto, reversed = false }: ProyectoCardProps) => {
+const ProyectoCard = ({ proyecto, index }: ProyectoCardProps) => {
+    const { t } = useTranslation();
+    const [isHovered, setIsHovered] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
+    const isEven = index % 2 === 0;
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                    observer.unobserve(entry.target);
+                }
+            },
+            { threshold: 0.1 }
+        );
+
+        if (containerRef.current) {
+            observer.observe(containerRef.current);
+        }
+
+        return () => {
+            if (containerRef.current) {
+                observer.unobserve(containerRef.current);
+            }
+        };
+    }, []);
+
     return (
-        <div className="w-full h-screen relative">
-            {/* Imagen - solo en el área visible */}
-            <div className={`absolute top-0 ${reversed ? 'left-0' : 'right-0'} w-[50%] h-full`}>
-                <Image
-                    src={proyecto.imagen}
-                    alt={proyecto.nombre}
-                    fill
-                    className="object-cover"
-                />
-            </div>
+        <div 
+            ref={containerRef}
+            className="flex items-center justify-center w-full min-h-screen px-6 py-24 bg-black md:px-12 md:py-28"
+        >
+            <div className={`w-full max-w-6xl transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start`}>
+                    
+                    {/* COLUMNA 1: INFORMACIÓN */}
+                    <div className={`flex flex-col gap-8 ${!isEven ? 'md:order-2' : ''}`}>
+                        {/* Número y línea decorativa */}
+                        <div 
+                            className={`flex items-center gap-4 overflow-hidden transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}
+                            style={{
+                                transitionDelay: isVisible ? '0.2s' : '0s',
+                            }}>
+                            <span className="text-6xl font-light leading-none text-gray-600 md:text-7xl">
+                                0{index + 1}
+                            </span>
+                            <div className="flex-1 h-px bg-gradient-to-r from-purple-500/50 to-transparent"></div>
+                        </div>
 
-            {/* Contenedor de información - absolute - 65% horizontal, 100% vertical */}
-            <div className={`absolute top-0 ${reversed ? 'right-0' : 'left-0'} w-[65%] h-full bg-black flex items-center ${reversed ? 'justify-end pr-10' : 'justify-start pl-4 pr-16'} py-8`}
-                 style={{
-                     clipPath: reversed 
-                         ? 'polygon(0% 0%, 100% 0%, 100% 100%, 15% 100%)' // Inclinado en lado izquierdo
-                         : 'polygon(0% 0%, 100% 0%, 85% 100%, 0% 100%)'   // Inclinado en lado derecho
-                 }}>
-                <div className="w-full max-w-2xl flex flex-col gap-3 text-start">
-                    {/* Título */}
-                    <h2 className={`text-2xl font-bold ${reversed ? 'text-right' : 'text-left'} text-white`}>
-                        {proyecto.nombre}
-                    </h2>
-
-                    {/* Descripción */}
-                    <div className="space-y-4 mb-2">
-                        {proyecto.descripcion.map((parrafo, index) => (
-                            <p key={index} className={`${reversed ? 'text-right' : 'text-left'} text-gray-300 text-base leading-relaxed`}>
-                                {parrafo}
+                        {/* Título y rol */}
+                        <div className={`space-y-2 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}
+                            style={{
+                                transitionDelay: isVisible ? '0.3s' : '0s',
+                            }}>
+                            <h2 className="text-4xl font-bold leading-tight text-white transition-colors duration-300 md:text-5xl hover:text-purple-400">
+                                {proyecto.nombre}
+                            </h2>
+                            <p className="text-sm font-medium text-purple-400 md:text-base">
+                                {proyecto.miRol}
                             </p>
-                        ))}
-                    </div>
+                        </div>
 
-                    {/* Tecnologías */}
-                    <div>
-                        <h3 className={`text-xl ${reversed ? 'text-right' : 'text-left'} font-semibold text-white mb-4`}>Tecnologías</h3>
-                        <div className={`flex flex-wrap gap-3 ${reversed ? 'justify-end' : 'justify-start'}`}>
-                            {proyecto.tecnologias.map((tech, index) => (
-                                <span
-                                    key={index}
-                                    className="px-4 py-1 bg-transparent border border-white rounded-full text-white text-sm font-medium hover:bg-white hover:text-black transition-all duration-300"
+                        {/* Descripción */}
+                        <div className={`space-y-4 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}
+                            style={{
+                                transitionDelay: isVisible ? '0.4s' : '0s',
+                            }}>
+                            {proyecto.descripcion.map((parrafo, idx) => (
+                                <p 
+                                    key={idx} 
+                                    className="text-sm leading-relaxed text-gray-400 transition-opacity duration-300 md:text-base opacity-90 hover:opacity-100"
                                 >
-                                    {tech}
-                                </span>
+                                    {parrafo}
+                                </p>
                             ))}
+                        </div>
+
+                        {/* Stack de tecnologías */}
+                        <div className={`space-y-3 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}
+                            style={{
+                                transitionDelay: isVisible ? '0.5s' : '0s',
+                            }}>
+                            <p className="text-xs font-semibold tracking-widest text-gray-500 uppercase">{t('proyectos.stackTitle')}</p>
+                            <div className="flex flex-wrap gap-2">
+                                {proyecto.tecnologias.map((tech, idx) => (
+                                    <span
+                                        key={idx}
+                                        className="px-3 py-1.5 text-xs bg-gradient-to-r from-white/10 to-transparent border border-white/30 rounded-md text-gray-300 hover:border-white/60 hover:bg-white/20 transition-all duration-300 whitespace-nowrap"
+                                    >
+                                        {tech}
+                                    </span>
+                                ))}
+                            </div>
                         </div>
                     </div>
 
-                    {/* Botones */}
-                    <div className={`flex gap-4 mt-6 ${reversed ? 'justify-end' : 'justify-start'}`}>
-                        {proyecto.linkProyecto ? (
-                            <a
-                                href={proyecto.linkProyecto}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-medium transition-all duration-300 shadow-lg hover:shadow-purple-500/50"
-                            >
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                    <path d="M15 3h6v6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                    <path d="M10 14L21 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
-                                Ver Proyecto
-                            </a>
-                        ) : (
-                            <button
-                                disabled
-                                className="flex items-center gap-2 px-6 py-3 bg-gray-600 text-gray-400 rounded-lg font-medium cursor-not-allowed opacity-50"
-                            >
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                    <path d="M15 3h6v6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                    <path d="M10 14L21 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
-                                Ver Proyecto
-                            </button>
-                        )}
-                        
-                        {proyecto.linkCodigo ? (
-                            <a
-                                href={proyecto.linkCodigo}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center gap-2 px-6 py-3 bg-transparent border border-white hover:bg-white hover:text-black text-white rounded-lg font-medium transition-all duration-300"
-                            >
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
-                                Ver Código
-                            </a>
-                        ) : (
-                            <button
-                                disabled
-                                className="flex items-center gap-2 px-6 py-3 bg-transparent border border-gray-600 text-gray-400 rounded-lg font-medium cursor-not-allowed opacity-50"
-                            >
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
-                                Ver Código
-                            </button>
-                        )}
+                    {/* COLUMNA 2: IMAGEN + BOTONES */}
+                    <div className={`flex flex-col gap-6 pt-8 md:pt-12 ${!isEven ? 'md:order-1' : ''}`}>
+                        {/* Imagen */}
+                        <div 
+                            className={`relative w-full h-64 md:h-96 overflow-hidden rounded-xl transition-all duration-700 ${isHovered ? 'scale-105' : 'scale-100'} group ${isVisible ? 'animate-scale-in' : ''}`}
+                            style={{
+                                animationDelay: isVisible ? '0.1s' : '0s',
+                            }}
+                            onMouseEnter={() => setIsHovered(true)}
+                            onMouseLeave={() => setIsHovered(false)}>
+                            <Image
+                                src={proyecto.imagen}
+                                alt={proyecto.nombre}
+                                fill
+                                className="object-cover"
+                                priority={index === 0}
+                            />
+                            <div className={`absolute inset-0 bg-black/40 transition-opacity duration-700 group-hover:bg-black/0`}></div>
+                            <div className={`absolute inset-0 bg-gradient-to-br from-white/0 via-transparent to-purple-700/0 transition-opacity duration-700 ${isHovered ? 'opacity-20' : 'opacity-0'}`}></div>
+                        </div>
+
+                        {/* Botones debajo de la imagen */}
+                        <div className={`flex flex-wrap gap-3 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}`}
+                            style={{
+                                transitionDelay: isVisible ? '0.6s' : '0s',
+                            }}>
+                            {proyecto.linkProyecto ? (
+                                <a
+                                    href={proyecto.linkProyecto}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="px-6 py-2.5 text-sm font-medium text-black bg-gradient-to-r from-white to-gray-100 rounded-lg hover:from-gray-100 hover:to-gray-200 transition-all duration-300 flex items-center gap-2 group shadow-lg shadow-gray-500/20 hover:shadow-white/20 hover:-translate-y-0.5"
+                                >
+                                    <span>{t('proyectos.visitProject')}</span>
+                                    <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                    </svg>
+                                </a>
+                            ) : (
+                                <button disabled className="px-6 py-2.5 text-sm font-medium text-gray-500 bg-gray-800 rounded-lg cursor-not-allowed opacity-50">
+                                    {t('proyectos.privateProject')}
+                                </button>
+                            )}
+                            {proyecto.linkCodigo && (
+                                <a
+                                    href={proyecto.linkCodigo}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="px-6 py-2.5 text-sm font-medium text-white border border-white-500/50 rounded-lg hover:bg-purple-500/10 hover:border-purple-400 transition-all duration-300 flex items-center gap-2 group hover:-translate-y-0.5"
+                                >
+                                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                    </svg>
+                                    <span>{t('proyectos.viewCode')}</span>
+                                </a>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>

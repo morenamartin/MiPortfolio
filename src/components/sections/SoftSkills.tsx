@@ -1,7 +1,9 @@
 "use client"
 import { useState, useEffect } from "react";
+import { useTranslation } from '@/hooks/useTranslation';
 
 const SoftSkills = () => {
+    const { t } = useTranslation();
     const [phase, setPhase] = useState<'inicial' | 'expansion' | 'rectangulos'>('inicial');
     const [hasStarted, setHasStarted] = useState(false);
     const [showTitle, setShowTitle] = useState(false);
@@ -115,13 +117,13 @@ const SoftSkills = () => {
     };
 
     const skills = [
-        { left: 35, top: 25, label: 'Trabajo en Equipo' },
-        { left: 65, top: 25, label: 'Comunicación Eficaz' },
-        { left: 25, top: 50, label: 'Gestión del tiempo' },
-        { left: 50, top: 50, label: 'Orientación a resultados' },
-        { left: 75, top: 50, label: 'Adaptabilidad' },
-        { left: 35, top: 75, label: 'Organización' },
-        { left: 65, top: 75, label: 'Aprendizaje Continuo' }
+        { left: 35, top: 25, label: t('softSkills.teamwork') },
+        { left: 65, top: 25, label: t('softSkills.communication') },
+        { left: 25, top: 50, label: t('softSkills.timeManagement') },
+        { left: 50, top: 50, label: t('softSkills.resultOriented') },
+        { left: 75, top: 50, label: t('softSkills.adaptability') },
+        { left: 35, top: 75, label: t('softSkills.organization') },
+        { left: 65, top: 75, label: t('softSkills.continuousLearning') }
     ];
 
     const getItemStyle = (index: number): React.CSSProperties => {
@@ -208,7 +210,7 @@ const SoftSkills = () => {
                         animation: 'titleScale 2s ease-in-out forwards'
                     }}
                 >
-                    Soft Skills
+                    {t('softSkills.title')}
                 </h2>
             )}
 
