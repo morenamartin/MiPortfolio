@@ -1,5 +1,7 @@
+import Contacto from "@/components/sections/Contacto";
 import EducacionExperiencia from "@/components/sections/EducacionExperiencia";
 import Inicio from "@/components/sections/Inicio";
+import Proyectos from "@/components/sections/Poyectos";
 import SobreMi from "@/components/sections/SobreMi";
 import SoftSkills from "@/components/sections/SoftSkills";
 import Tecnologias from "@/components/sections/Tecnologias";
@@ -23,11 +25,12 @@ export default function Home() {
       <section id="educacion-experiencia" className="bg-black section">
         <EducacionExperiencia />
       </section>
-      <section id="proyectos" className="bg-purple-500 section">
-        <h1 className="text-6xl font-bold text-white">PROYECTOS</h1>
+      <section id="frase" className="bg-black section">
+        <span className="text-white">ACA VA UNA FRASE</span>
       </section>
-      <section id="contacto" className="bg-pink-500 section">
-        <h1 className="text-6xl font-bold text-white">CONTACTO</h1>
+      <Proyectos />
+      <section id="contacto" className="bg-black section">
+        <Contacto />
       </section>
     </SmoothScroll>
   )

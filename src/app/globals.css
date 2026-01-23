@@ -43,4 +43,15 @@ body {
   padding: 0 !important;
 }
 
+.section-no-snap {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 

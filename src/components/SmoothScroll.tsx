@@ -48,8 +48,6 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       const hasSubScroll = currentSectionElement?.getAttribute('data-has-subscroll') === 'true';
       const isSobreMi = currentSectionElement?.id === 'sobre-mi';
       
-      console.log('Section:', actualSectionIndex, 'ID:', currentSectionElement?.id, 'hasSubScroll:', hasSubScroll, 'isSobreMi:', isSobreMi);
-      
       if (hasSubScroll && isSobreMi) {
         const progress = sectionScrollProgress[actualSectionIndex] || 0;
         
