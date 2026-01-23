@@ -6,7 +6,7 @@ const Inicio = () => {
     const { t } = useTranslation();
     
     return (
-        <section id="inicio" className="flex flex-col items-center justify-center h-screen bg-black section">
+        <section className="flex flex-col items-center justify-center h-screen bg-black section">
             <h1 className="font-bold text-white text-7xl">{t('inicio.greeting')}</h1>
             <h1 className="font-bold text-white text-7xl">{t('inicio.name')}</h1>
             <h1 className="font-bold text-[#6A0C7D] text-7xl">{t('inicio.role')}</h1>

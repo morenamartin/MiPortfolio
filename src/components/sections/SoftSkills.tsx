@@ -176,7 +176,7 @@ const SoftSkills = () => {
     };
          
     return (
-        <section id="habilidades" className="relative flex items-center justify-center bg-black section">
+        <section className="relative flex items-center justify-center bg-black section">
             {/* Partículas del mouse */}
             {particles.map(particle => (
                 <div

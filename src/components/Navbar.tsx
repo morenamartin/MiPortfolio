@@ -31,25 +31,24 @@ const links = [
 
     // Función para scroll suave mejorado
     const scrollToSection = (targetId: string) => {
-        console.log('Intentando navegar a:', targetId);
-        const section = document.querySelector(targetId);
+        const container = document.querySelector('.container') as HTMLElement;
+        if (!container) return;
+
+        const targetSectionId = targetId.replace('#', '');
+        const targetElement = document.getElementById(targetSectionId);
         
-        if (!section) {
-            console.log('No se encontró la sección:', targetId);
-            return;
-        }
+        if (!targetElement) return;
 
-        console.log('Sección encontrada:', section);
+        // Obtener la posición del elemento relativa al container
+        const containerRect = container.getBoundingClientRect();
+        const targetRect = targetElement.getBoundingClientRect();
+        const scrollTop = container.scrollTop;
         
-        // Scroll simple y directo
-        const elementPosition = section.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - 100; // 100px de offset
-
-        console.log('Scrolling to position:', offsetPosition);
-
-        window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth"
+        const targetPosition = scrollTop + (targetRect.top - containerRect.top);
+        
+        container.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
         });
     };
 
