@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { Menu } from "lucide-react";
 import LanguageToggle from "./LanguageToggle";
+import ThemeToggle from "./ThemeToggle";
 import { useTranslation } from "@/hooks/useTranslation";
 
 const Navbar = () => {
@@ -72,8 +73,9 @@ const links = [
             ))}
             </div>
 
-            {/* Selector de idioma y menú móvil */}
+            {/* Selector de idioma y tema */}
             <div className="flex items-center gap-4 absolute right-4">
+                <ThemeToggle />
                 <LanguageToggle />
                 
                 {/* Botón de menú hamburguesa */}
