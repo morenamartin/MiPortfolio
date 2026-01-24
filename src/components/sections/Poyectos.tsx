@@ -49,7 +49,7 @@ const Proyectos = () => {
         }
     ];
     return (
-        <div className="w-full bg-black">
+        <div className="w-full bg-white dark:bg-black">
             {proyectos.map((proyecto, index) => (
                 <section 
                     key={proyecto.id}

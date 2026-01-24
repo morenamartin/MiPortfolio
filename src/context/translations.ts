@@ -12,7 +12,7 @@ export const translations = {
     },
     // Inicio
     inicio: {
-      greeting: 'HOLA!',
+      greeting: '¡HOLA!',
       name: 'SOY MORENA MARTÍN',
       role: 'Desarrolladora Full Stack',
       description: 'Especializada en crear experiencias web modernas y funcionales. Apasionada por el código limpio, el diseño intuitivo y las nuevas tecnologías',

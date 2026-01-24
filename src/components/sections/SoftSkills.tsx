@@ -1,9 +1,11 @@
 "use client"
 import { useState, useEffect } from "react";
 import { useTranslation } from '@/hooks/useTranslation';
+import { useTheme } from '@/context/ThemeContext';
 
 const SoftSkills = () => {
     const { t } = useTranslation();
+    const { theme } = useTheme();
     const [phase, setPhase] = useState<'inicial' | 'expansion' | 'rectangulos'>('inicial');
     const [hasStarted, setHasStarted] = useState(false);
     const [showTitle, setShowTitle] = useState(false);
@@ -176,7 +178,7 @@ const SoftSkills = () => {
     };
          
     return (
-        <section className="relative flex items-center justify-center bg-black section">
+        <section className="relative flex items-center justify-center bg-white dark:bg-black section">
             {/* Partículas del mouse */}
             {particles.map(particle => (
                 <div
@@ -189,8 +191,8 @@ const SoftSkills = () => {
                         width: `${particle.size}px`,
                         height: `${particle.size}px`,
                         borderRadius: '50%',
-                        backgroundColor: 'white',
-                        boxShadow: '0 0 10px rgba(255, 255, 255, 0.8)',
+                        backgroundColor: theme === 'dark' ? 'white' : 'black',
+                        boxShadow: theme === 'dark' ? '0 0 10px rgba(255, 255, 255, 0.8)' : '0 0 10px rgba(0, 0, 0, 0.8)',
                         pointerEvents: 'none',
                         animation: 'particleFade 0.8s ease-out forwards'
                     }}
@@ -200,7 +202,7 @@ const SoftSkills = () => {
             {/* Título animado */}
             {showTitle && (
                 <h2 
-                    className="absolute font-mono text-6xl font-bold text-white"
+                    className="absolute font-mono text-6xl font-bold text-black dark:text-white"
                     style={{
                         left: '50%',
                         top: '50%',
@@ -217,7 +219,7 @@ const SoftSkills = () => {
             {skills.map((skill, index) => (
                 <div 
                     key={index}
-                    className="absolute flex items-center justify-center overflow-hidden border-2 border-white"
+                    className="absolute flex items-center justify-center overflow-hidden border-2 border-black dark:border-white"
                     style={getItemStyle(index)}
                     onMouseEnter={() => handleSkillHover(index)}
                 >
@@ -232,8 +234,8 @@ const SoftSkills = () => {
                                 width: `${particle.size}px`,
                                 height: `${particle.size}px`,
                                 borderRadius: '50%',
-                                backgroundColor: 'white',
-                                boxShadow: '0 0 8px rgba(255, 255, 255, 0.8)',
+                                backgroundColor: theme === 'dark' ? 'white' : 'black',
+                                boxShadow: theme === 'dark' ? '0 0 8px rgba(255, 255, 255, 0.8)' : '0 0 8px rgba(0, 0, 0, 0.8)',
                                 pointerEvents: 'none',
                                 animation: 'particleFade 2.5s ease-out forwards'
                             }}
@@ -242,7 +244,7 @@ const SoftSkills = () => {
                     
                     {phase === 'rectangulos' && (
                         <span 
-                            className="px-4 font-mono font-semibold text-center text-white"
+                            className="px-4 font-mono font-semibold text-center text-black dark:text-white"
                             style={{
                                 animation: `fadeInSlide 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards`,
                                 animationDelay: `${0.6 + index * 0.08}s`,

@@ -15,27 +15,36 @@ interface ThemeProviderProps {
 }
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-  const [theme, setTheme] = useState<Theme>('dark'); // Por defecto oscuro como está ahora
+  const [theme, setTheme] = useState<Theme>('dark'); // Por defecto oscuro
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Cargar tema guardado
+    setMounted(true);
+    
+    // Cargar tema guardado o usar dark por defecto
     const savedTheme = localStorage.getItem('portfolio-theme') as Theme | null;
     if (savedTheme) {
       setTheme(savedTheme);
+    } else {
+      // Si no hay tema guardado, usar dark por defecto
+      setTheme('dark');
     }
   }, []);
 
   useEffect(() => {
+    if (!mounted) return;
+    
     // Guardar tema y aplicar clase al HTML
     localStorage.setItem('portfolio-theme', theme);
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-      document.documentElement.classList.remove('light');
-    } else {
-      document.documentElement.classList.add('light');
-      document.documentElement.classList.remove('dark');
-    }
-  }, [theme]);
+    
+    // Limpiar clases anteriores
+    document.documentElement.classList.remove('light', 'dark');
+    
+    // Aplicar la clase del tema actual
+    document.documentElement.classList.add(theme);
+    
+    console.log('Tema aplicado:', theme); // Para debug
+  }, [theme, mounted]);
 
   const toggleTheme = () => {
     setTheme(prev => prev === 'dark' ? 'light' : 'dark');

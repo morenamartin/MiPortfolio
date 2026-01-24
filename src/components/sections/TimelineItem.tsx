@@ -13,11 +13,11 @@ const TimelineItem = ({ titulo, fecha, lugar, descripcion, tecnologias }: Timeli
         <div className="flex gap-8 h-[80vh] snap-start items-center px-8">
             {/* Contenido principal */}
             <div className="flex-1">
-                <h2 className="text-4xl font-bold uppercase mb-2">{titulo}</h2>
-                <p className="text-xl text-violet-300 mb-1">{fecha}</p>
-                <p className="text-lg text-gray-400 mb-6">{lugar}</p>
+                <h2 className="text-4xl font-bold uppercase mb-2 text-black dark:text-white">{titulo}</h2>
+                <p className="text-xl text-purple-600 dark:text-violet-300 mb-1">{fecha}</p>
+                <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">{lugar}</p>
                 
-                <div className="space-y-4 text-base leading-relaxed">
+                <div className="space-y-4 text-base leading-relaxed text-black dark:text-white">
                     {descripcion.map((parrafo, index) => (
                         <p key={index}>{parrafo}</p>
                     ))}
@@ -33,7 +33,7 @@ const TimelineItem = ({ titulo, fecha, lugar, descripcion, tecnologias }: Timeli
                 {tecnologias.map((tech, index) => (
                     <div 
                         key={index}
-                        className="w-12 h-12 flex items-center justify-center bg-white/10 rounded-lg hover:bg-white/20 transition-colors"
+                        className="w-12 h-12 flex items-center justify-center bg-black/10 dark:bg-white/10 rounded-lg hover:bg-black/20 dark:hover:bg-white/20 transition-colors"
                     >
                         <Image 
                             src={tech} 

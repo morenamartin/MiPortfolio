@@ -99,7 +99,7 @@ const Tecnologias = () => {
   }, [hasAnimated]);
 
   return (
-    <div ref={sectionRef} className="py-12 bg-black">
+    <div ref={sectionRef} className="py-12 bg-white dark:bg-black">
         <div className="grid w-full grid-cols-6 gap-12">
           {technologies.map((tech, index) => (
             <ColorfulIcon

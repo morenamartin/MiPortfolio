@@ -50,9 +50,9 @@ const SobreMi = () => {
 
     // Calcular transformaciones basadas en el progreso (0 = inicial, 1 = completamente scrolleado)
     const imageScale = 1 - (scrollProgress * 0.6); // De 1 a 0.5
-    const imageTranslateY = -(scrollProgress * 180); // Sube hasta 250px
+    const imageTranslateY = -(scrollProgress * 210); // Sube hasta 250px
     const textOpacity = scrollProgress; // De 0 a 1
-    const textTranslateY = 100 - (scrollProgress * 260); // De 100px a 0
+    const textTranslateY = 100 - (scrollProgress * 280); // De 100px a 0
 
     return (
         <div className="relative flex flex-col items-center justify-center w-full h-full px-20">
@@ -85,7 +85,7 @@ const SobreMi = () => {
             </div>
             
             <div 
-                className="absolute grid items-center grid-cols-2 gap-8 px-16 text-white top-96"
+                className="absolute grid items-center grid-cols-2 gap-8 px-16 text-black dark:text-white top-96"
                 style={{
                     opacity: textOpacity,
                     transform: `translateY(${textTranslateY}px)`,
@@ -108,30 +108,30 @@ const SobreMi = () => {
                 
                 <div className="px-6">
                     <div className="flex items-center gap-3 mb-2">
-                        <div className="p-2 rounded-lg bg-violet-600">
-                            <Code width={22} height={22}></Code>
+                        <div className="p-2 bg-purple-600 rounded-lg dark:bg-purple-500">
+                            <Code width={22} height={22} className="text-white"></Code>
                         </div>
-                        <span className="text-lg font-semibold">{t('sobreMi.skill1Title')}</span>
+                        <span className="text-lg font-semibold text-black dark:text-white">{t('sobreMi.skill1Title')}</span>
                     </div>
                     <p className="text-base leading-relaxed text-left">
                        {t('sobreMi.skill1Description')}
                     </p>
                     <br />
                     <div className="flex items-center gap-3 mb-2">
-                        <div className="p-2 rounded-lg bg-violet-600">
-                            <Code width={22} height={22}></Code>
+                        <div className="p-2 bg-purple-600 rounded-lg dark:bg-purple-500">
+                            <Code width={22} height={22} className="text-white"></Code>
                         </div>
-                        <span className="text-lg font-semibold">{t('sobreMi.skill2Title')}</span>
+                        <span className="text-lg font-semibold text-black dark:text-white">{t('sobreMi.skill2Title')}</span>
                     </div>
                     <p className="text-base leading-relaxed text-left">
                        {t('sobreMi.skill2Description')}
                     </p>
                     <br />
                     <div className="flex items-center gap-3 mb-2">
-                        <div className="p-2 rounded-lg bg-violet-600">
-                            <Code width={22} height={22}></Code>
+                        <div className="p-2 bg-purple-600 rounded-lg dark:bg-purple-500">
+                            <Code width={22} height={22} className="text-white"></Code>
                         </div>
-                        <span className="text-lg font-semibold">{t('sobreMi.skill3Title')}</span>
+                        <span className="text-lg font-semibold text-black dark:text-white">{t('sobreMi.skill3Title')}</span>
                     </div>
                     <p className="text-base leading-relaxed text-left">
                        {t('sobreMi.skill3Description')}

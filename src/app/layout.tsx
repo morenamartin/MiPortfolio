@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { ModalProvider } from "@/context/moduloEcommerce";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { ThemeProvider } from "@/context/ThemeContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,14 +27,35 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="w-full p-0 m-0">
-      <body className={`${geistSans.variable} ${geistMono.variable} w-full m-0 p-0 overflow-x-hidden`} suppressHydrationWarning>
-        <LanguageProvider>
-          <ModalProvider>
-            <Navbar />
-            {children}
-          </ModalProvider>
-        </LanguageProvider>
+    <html lang="en" className="w-full p-0 m-0 dark" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('portfolio-theme') || 'dark';
+                  if (theme !== 'dark') {
+                    document.documentElement.classList.remove('dark');
+                    document.documentElement.classList.add(theme);
+                  }
+                } catch (e) {
+                  // Ya tiene 'dark' por defecto
+                }
+              })()
+            `,
+          }}
+        />
+      </head>
+      <body className={`${geistSans.variable} ${geistMono.variable} w-full m-0 p-0 overflow-x-hidden bg-white dark:bg-black text-black dark:text-white`} suppressHydrationWarning>
+        <ThemeProvider>
+          <LanguageProvider>
+            <ModalProvider>
+              <Navbar />
+              {children}
+            </ModalProvider>
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

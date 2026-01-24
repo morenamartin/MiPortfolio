@@ -2,6 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Variables de tema - Modo Claro (por defecto) */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-tertiary: #94a3b8;
+  --border-color: #e2e8f0;
+  --accent-primary: #a855f7;
+  --accent-secondary: #ec4899;
+}
+
+/* Variables de tema - Modo Oscuro */
+.dark {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #94a3b8;
+  --border-color: #475569;
+  --accent-primary: #a855f7;
+  --accent-secondary: #ec4899;
+}
+
 * {
   margin: 0;
   padding: 0;

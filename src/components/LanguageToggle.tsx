@@ -9,7 +9,7 @@ const LanguageToggle = () => {
   return (
     <button
       onClick={toggleLanguage}
-      className="flex items-center gap-2 mr-4 text-sm font-medium text-white transition-all duration-300 hover:text-gray-200"
+      className="flex items-center gap-1 text-sm font-medium text-black transition-all duration-300 dark:text-white hover:text-gray-600 dark:hover:text-gray-200 hover:scale-105"
       aria-label={`Cambiar a ${language === 'es' ? 'inglés' : 'español'}`}
     >
       <Globe className="w-4 h-4" />

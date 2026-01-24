@@ -62,7 +62,7 @@ const links = [
                 <a
                     key={link.href}
                     href={link.href}
-                    className="px-2 py-2 font-bold text-white hover:text-gray-200 drop-shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer"
+                    className="px-2 py-2 font-bold text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-200 drop-shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer"
                     onClick={(e) => {
                         e.preventDefault();
                         scrollToSection(link.href);
@@ -74,9 +74,9 @@ const links = [
             </div>
 
             {/* Selector de idioma y tema */}
-            <div className="flex items-center gap-4 absolute right-4">
-                <ThemeToggle />
+            <div className="absolute flex items-center gap-2 right-4">
                 <LanguageToggle />
+                <ThemeToggle />
                 
                 {/* Botón de menú hamburguesa */}
                 <button
@@ -84,21 +84,21 @@ const links = [
                     onClick={() => setMenu((prev) => !prev)}
                     aria-label="Abrir menú"
                 >
-                    <Menu className="transition-colors w-7 h-7 text-violet-700 hover:text-violet-900" />
+                    <Menu className="text-purple-600 transition-colors w-7 h-7 dark:text-purple-400 hover:text-purple-800 dark:hover:text-purple-200" />
                 </button>
             </div>
             {/* Menú móvil */}
             {menu && (
                 <div className="fixed inset-0 z-50 bg-black/40 md:hidden" onClick={() => setMenu(false)}>
                     <nav
-                        className="absolute flex flex-col w-48 gap-2 px-6 py-4 text-center bg-white shadow-xl right-4 top-16 rounded-xl animate-slide-in"
+                        className="absolute flex flex-col w-48 gap-2 px-6 py-4 text-center bg-white shadow-xl dark:bg-gray-800 right-4 top-16 rounded-xl animate-slide-in"
                         onClick={(e) => e.stopPropagation()}
                     >
                         {links.map((link) => (
                             <a
                                 key={link.href}
                                 href={link.href}
-                                className="block px-4 py-2 font-semibold transition-all duration-300 rounded-lg text-violet-700 hover:bg-violet-100 hover:text-violet-900 hover:scale-105 cursor-pointer"
+                                className="block px-4 py-2 font-semibold text-purple-600 transition-all duration-300 rounded-lg cursor-pointer dark:text-purple-400 hover:bg-purple-100 dark:hover:bg-gray-700 hover:text-purple-800 dark:hover:text-purple-200 hover:scale-105"
                                 onClick={(e) => {
                                     e.preventDefault();
                                     setMenu(false);
