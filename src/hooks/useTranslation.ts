@@ -8,18 +8,21 @@ export const useTranslation = () => {
   
   const t = (key: string) => {
     const keys = key.split('.');
-    let value: any = translations[language];
+    let value: unknown = (translations as Record<string, unknown>)[language];
     
     for (const k of keys) {
-      if (value && typeof value === 'object' && k in value) {
-        value = value[k];
-      } else {
-        console.warn(`Translation key "${key}" not found for language "${language}"`);
-        return key;
+      if (value && typeof value === 'object') {
+        const record = value as Record<string, unknown>;
+        if (k in record) {
+          value = record[k];
+          continue;
+        }
       }
+      console.warn(`Translation key "${key}" not found for language "${language}"`);
+      return key;
     }
     
-    return value || key;
+    return typeof value === 'string' ? value : key;
   };
 
   return { t, language };

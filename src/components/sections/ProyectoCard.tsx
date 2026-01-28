@@ -36,13 +36,14 @@ const ProyectoCard = ({ proyecto, index }: ProyectoCardProps) => {
             { threshold: 0.1 }
         );
 
-        if (containerRef.current) {
-            observer.observe(containerRef.current);
+        const el = containerRef.current; // <-- copiar ref a variable local
+        if (el) {
+            observer.observe(el);
         }
 
         return () => {
-            if (containerRef.current) {
-                observer.unobserve(containerRef.current);
+            if (el) {
+                observer.unobserve(el);
             }
         };
     }, []);

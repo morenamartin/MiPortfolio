@@ -2,6 +2,7 @@
 import { Code } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useTranslation } from '@/hooks/useTranslation';
+import Image from "next/image";
 
 const clamp = (v: number, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 
@@ -123,14 +124,17 @@ const SobreMi = () => {
                         boxShadow: `
                             0 0 20px rgba(139, 92, 246, 0.6),
                             0 0 40px rgba(139, 92, 246, 0.4),
-                            0 0 60px rgba(139, 92, 246, 0.3)
+                            0 0 60px rgba(139, 92, 246, 0.3),
+                            0 0 80px rgba(139, 92, 246, 0.2);
                         `,
                         animation: 'pulse-glow 2s ease-in-out infinite'
                     }}
                 >
-                    <img 
-                        src="/foto-perfil.jpeg" 
-                        alt="Sobre mí" 
+                    <Image
+                        src="/foto-perfil.jpeg"
+                        alt="Sobre mí"
+                        width={320}
+                        height={320}
                         className="object-cover w-full h-full rounded-full"
                         style={{ imageRendering: 'auto', WebkitFontSmoothing: 'antialiased' }}
                     />
@@ -210,9 +214,11 @@ const SobreMi = () => {
                     animation: 'pulse-glow 2s ease-in-out infinite'
                 }}
             >
-                <img 
-                    src="/foto-perfil.jpeg" 
-                    alt="Sobre mí" 
+                <Image
+                    src="/foto-perfil.jpeg"
+                    alt="Sobre mí"
+                    width={320}
+                    height={320}
                     className="object-cover w-full h-full rounded-full"
                     style={{ imageRendering: 'auto', WebkitFontSmoothing: 'antialiased' }}
                 />

@@ -56,8 +56,12 @@ const Proyectos = () => {
                     id={index === 0 ? "proyectos" : undefined}
                     className="w-full section"
                 >
-                    <ProyectoCard 
-                        proyecto={proyecto} 
+                    {/* Asegurar descripcion: string[] */}
+                    <ProyectoCard
+                        proyecto={{
+                            ...proyecto,
+                            descripcion: Array.isArray(proyecto.descripcion) ? proyecto.descripcion : [proyecto.descripcion]
+                        }}
                         index={index}
                     />
                 </section>
