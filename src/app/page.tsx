@@ -25,10 +25,12 @@ export default function Home() {
       <section id="educacion-experiencia" className="bg-white dark:bg-black section">
         <EducacionExperiencia />
       </section>
-      <section id="frase" className="bg-white dark:bg-black section">
+      {/* <section id="frase" className="bg-white dark:bg-black section">
         <span className="text-black dark:text-white">ACA VA UNA FRASE</span>
+      </section> */}
+      <section id="proyectos-section" className="bg-white dark:bg-black">
+        <Proyectos />
       </section>
-      <Proyectos />
       <section id="contacto" className="bg-white dark:bg-black section">
         <Contacto />
       </section>

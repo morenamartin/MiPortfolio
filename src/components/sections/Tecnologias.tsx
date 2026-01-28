@@ -7,8 +7,28 @@ const Tecnologias = () => {
   const { t } = useTranslation();
   const [activeIndices, setActiveIndices] = useState<number[]>([]);
   const [hasAnimated, setHasAnimated] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const widthIcon = "w-24 h-24";
+  
+  // Evitar hydration mismatch - inicializar con valor por defecto
+  const [widthIcon, setWidthIcon] = useState("w-24 h-24");
+  const [isClient, setIsClient] = useState(false);
+
+  // Detectar cambios de tamaño de pantalla
+  useEffect(() => {
+    setIsClient(true);
+    
+    const handleResize = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      setWidthIcon(mobile ? "w-20 h-20" : "w-24 h-24");
+    };
+
+    handleResize(); // Ejecutar al montar
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Datos de las tecnologías con años de experiencia
   const technologies = [
@@ -40,18 +60,30 @@ const Tecnologias = () => {
             console.log('Usuario llegó a la sección de Tecnologías');
             setHasAnimated(true);
             
-            // Orden diagonal: superior izquierda a inferior derecha
-            // Grid de 6 columnas, 18 iconos total (3 filas)
-            const diagonalOrder = [
-              0,           // diagonal 0
-              1, 6,        // diagonal 1
-              2, 7, 12,    // diagonal 2
-              3, 8, 13,    // diagonal 3
-              4, 9, 14,    // diagonal 4
-              5, 10, 15,   // diagonal 5
-              11, 16,      // diagonal 6
-              17           // diagonal 7
-            ];
+            // Orden diagonal adaptativo según el dispositivo
+            const diagonalOrder = isMobile ? 
+              // Grid de 3 columnas para móvil (6 filas)
+              [
+                0,           // diagonal 0
+                1, 3,        // diagonal 1  
+                2, 4, 6,     // diagonal 2
+                5, 7, 9,     // diagonal 3
+                8, 10, 12,   // diagonal 4
+                11, 13, 15,  // diagonal 5
+                14, 16,      // diagonal 6
+                17           // diagonal 7
+              ] :
+              // Grid de 6 columnas para desktop (3 filas)
+              [
+                0,           // diagonal 0
+                1, 6,        // diagonal 1
+                2, 7, 12,    // diagonal 2
+                3, 8, 13,    // diagonal 3
+                4, 9, 14,    // diagonal 4
+                5, 10, 15,   // diagonal 5
+                11, 16,      // diagonal 6
+                17           // diagonal 7
+              ];
             
             // Activar el efecto de ola después de 1 segundo
             const timer = setTimeout(() => {
@@ -96,11 +128,13 @@ const Tecnologias = () => {
         observer.unobserve(sectionRef.current);
       }
     };
-  }, [hasAnimated]);
+  }, [hasAnimated, isMobile]); // Agregar isMobile como dependencia
 
   return (
-    <div ref={sectionRef} className="py-12 bg-white dark:bg-black">
-        <div className="grid w-full grid-cols-6 gap-12">
+    <div ref={sectionRef} className="py-8 bg-white md:py-12 dark:bg-black">
+        <div className={`grid w-full gap-6 md:gap-12 px-4 md:px-0 ${
+          isMobile ? 'grid-cols-3' : 'grid-cols-6'
+        }`}>
           {technologies.map((tech, index) => (
             <ColorfulIcon
               key={tech.name}

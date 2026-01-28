@@ -11,6 +11,20 @@ const SoftSkills = () => {
     const [showTitle, setShowTitle] = useState(false);
     const [particles, setParticles] = useState<{id: number, x: number, y: number, size: number}[]>([]);
     const [innerParticles, setInnerParticles] = useState<{[key: number]: {id: number, x: number, y: number, size: number}[]}>({});
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkIfMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        checkIfMobile();
+        window.addEventListener('resize', checkIfMobile);
+
+        return () => {
+            window.removeEventListener('resize', checkIfMobile);
+        };
+    }, []);
 
     useEffect(() => {
         const section = document.getElementById('habilidades');
@@ -146,34 +160,69 @@ const SoftSkills = () => {
             };
         } else if (phase === 'expansion') {
             // Se expanden y mueven a posiciones finales
-            return {
-                left: `${skill.left}%`,
-                top: `${skill.top}%`,
-                transform: 'translate(-50%, -50%) scale(1)',
-                opacity: 1,
-                width: '80px',
-                height: '80px',
-                borderRadius: '50%',
-                transitionProperty: 'all',
-                transitionDuration: '1.2s',
-                transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
-                transitionDelay: `${index * 0.1}s`
-            };
+            if (isMobile) {
+                // En móvil, mantenerlos en el centro durante la expansión
+                return {
+                    left: '50%',
+                    top: '50%',
+                    transform: 'translate(-50%, -50%) scale(1)',
+                    opacity: 1,
+                    width: '80px',
+                    height: '80px',
+                    borderRadius: '50%',
+                    transitionProperty: 'all',
+                    transitionDuration: '1.2s',
+                    transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+                    transitionDelay: `${index * 0.1}s`
+                };
+            } else {
+                return {
+                    left: `${skill.left}%`,
+                    top: `${skill.top}%`,
+                    transform: 'translate(-50%, -50%) scale(1)',
+                    opacity: 1,
+                    width: '80px',
+                    height: '80px',
+                    borderRadius: '50%',
+                    transitionProperty: 'all',
+                    transitionDuration: '1.2s',
+                    transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+                    transitionDelay: `${index * 0.1}s`
+                };
+            }
         } else {
             // Se transforman en rectángulos con delay escalonado
-            return {
-                left: `${skill.left}%`,
-                top: `${skill.top}%`,
-                transform: 'translate(-50%, -50%) scale(1)',
-                opacity: 1,
-                width: '200px',
-                height: '80px',
-                borderRadius: '40px',
-                transitionProperty: 'all',
-                transitionDuration: '0.8s',
-                transitionTimingFunction: 'cubic-bezier(0.68, -0.55, 0.27, 1.55)',
-                transitionDelay: `${index * 0.08}s`
-            };
+            if (isMobile) {
+                // En móvil, disposición en columna ocupando todo el ancho
+                const topPosition = 15 + (index * 10); // Espaciado vertical más compacto
+                return {
+                    left: '50%',
+                    top: `${topPosition}%`,
+                    transform: 'translate(-50%, -50%) scale(1)',
+                    opacity: 1,
+                    width: '85%',
+                    height: '50px',
+                    borderRadius: '25px',
+                    transitionProperty: 'all',
+                    transitionDuration: '0.8s',
+                    transitionTimingFunction: 'cubic-bezier(0.68, -0.55, 0.27, 1.55)',
+                    transitionDelay: `${index * 0.08}s`
+                };
+            } else {
+                return {
+                    left: `${skill.left}%`,
+                    top: `${skill.top}%`,
+                    transform: 'translate(-50%, -50%) scale(1)',
+                    opacity: 1,
+                    width: '200px',
+                    height: '80px',
+                    borderRadius: '40px',
+                    transitionProperty: 'all',
+                    transitionDuration: '0.8s',
+                    transitionTimingFunction: 'cubic-bezier(0.68, -0.55, 0.27, 1.55)',
+                    transitionDelay: `${index * 0.08}s`
+                };
+            }
         }
     };
          
@@ -202,7 +251,7 @@ const SoftSkills = () => {
             {/* Título animado */}
             {showTitle && (
                 <h2 
-                    className="absolute font-mono text-6xl font-bold text-black dark:text-white"
+                    className={` ${isMobile ? 'text-center' : ''} absolute font-mono font-bold text-black dark:text-white`}
                     style={{
                         left: '50%',
                         top: '50%',
@@ -244,7 +293,7 @@ const SoftSkills = () => {
                     
                     {phase === 'rectangulos' && (
                         <span 
-                            className="px-4 font-mono font-semibold text-center text-black dark:text-white"
+                            className={`${isMobile ? 'px-2 text-xs' : 'px-4'} font-mono font-semibold text-center text-black dark:text-white`}
                             style={{
                                 animation: `fadeInSlide 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards`,
                                 animationDelay: `${0.6 + index * 0.08}s`,

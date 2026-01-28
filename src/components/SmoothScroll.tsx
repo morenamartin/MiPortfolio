@@ -7,6 +7,25 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
   const [sectionScrollProgress, setSectionScrollProgress] = useState<{[key: number]: number}>({});
   const [lastSection, setLastSection] = useState(0);
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
+  
+  // Estado para touch
+  const touchStartY = useRef<number>(0);
+  const isTouchScrolling = useRef<boolean>(false);
+
+  useEffect(() => {
+    // Detectar si es desktop o mobile
+    const checkIfDesktop = () => {
+      setIsDesktop(window.innerWidth >= 768); // md breakpoint de Tailwind
+    };
+
+    checkIfDesktop();
+    window.addEventListener('resize', checkIfDesktop);
+
+    return () => {
+      window.removeEventListener('resize', checkIfDesktop);
+    };
+  }, []);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -16,6 +35,11 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     const sectionHeight = window.innerHeight;
 
     const handleWheel = (e: WheelEvent) => {
+      // Solo aplicar smooth scroll en desktop
+      if (!isDesktop) {
+        return; // Permitir scroll normal en mobile
+      }
+
       if (isAnimating) {
         e.preventDefault();
         return;
@@ -106,18 +130,59 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       requestAnimationFrame(animateScroll);
     };
 
-    container.addEventListener('wheel', handleWheel, { passive: false });
+    // Solo agregar event listener para wheel en desktop
+    if (isDesktop) {
+      container.addEventListener('wheel', handleWheel, { passive: false });
+    }
+
+    // Función para manejar scroll en móviles y desktop
+    const handleSectionScroll = () => {
+      const currentScroll = container.scrollTop;
+      const sectionHeight = window.innerHeight;
+      const currentSection = Math.floor(currentScroll / sectionHeight);
+      const scrollWithinSection = currentScroll % sectionHeight;
+      const progressInSection = Math.min(scrollWithinSection / (sectionHeight * 0.8), 1);
+      
+      // Encontrar la sección sobre-mi
+      const sobreMiSection = container.querySelector('#sobre-mi') as HTMLElement;
+      if (sobreMiSection) {
+        const sections = Array.from(container.querySelectorAll('.section'));
+        const sobreMiIndex = sections.indexOf(sobreMiSection);
+        
+        if (currentSection === sobreMiIndex) {
+          // Disparar evento para sobre-mi
+          const event = new CustomEvent('sectionScroll', { detail: { progress: progressInSection } });
+          sobreMiSection.dispatchEvent(event);
+          setSectionScrollProgress(prev => ({ ...prev, [sobreMiIndex]: progressInSection }));
+        }
+      }
+    };
+
+    // Escuchar scroll nativo (para móviles y cuando no hay animación)
+    const handleNativeScroll = () => {
+      if (!isAnimating) {
+        handleSectionScroll();
+      }
+    };
+
+    container.addEventListener('scroll', handleNativeScroll, { passive: true });
 
     return () => {
-      container.removeEventListener('wheel', handleWheel);
+      if (isDesktop) {
+        container.removeEventListener('wheel', handleWheel);
+      }
+      container.removeEventListener('scroll', handleNativeScroll);
       if (scrollTimeoutRef.current) {
         clearTimeout(scrollTimeoutRef.current);
       }
     };
-  }, [isAnimating, sectionScrollProgress, lastSection]);
+  }, [isAnimating, sectionScrollProgress, lastSection, isDesktop]); // Agregado isDesktop a las dependencias
 
   return (
-    <div ref={containerRef} className="container">
+    <div 
+      ref={containerRef} 
+      className={`container ${isDesktop ? 'snap-none' : 'snap-y snap-mandatory'}`}
+    >
       {children}
     </div>
   );

@@ -29,6 +29,7 @@ const links = [
     }, []);
 
     const [menu, setMenu] = useState(false)
+    const [menuClosing, setMenuClosing] = useState(false)
 
     // Función para scroll suave mejorado
     const scrollToSection = (targetId: string) => {
@@ -80,53 +81,104 @@ const links = [
                 
                 {/* Botón de menú hamburguesa */}
                 <button
-                    className="flex items-center justify-center md:hidden focus:outline-none"
-                    onClick={() => setMenu((prev) => !prev)}
+                    className="flex items-center justify-center p-2 rounded-lg md:hidden focus:outline-none transition-all duration-300 hover:scale-110"
+                    onClick={() => {
+                        if (menu) {
+                            setMenuClosing(true);
+                            setTimeout(() => {
+                                setMenu(false);
+                                setMenuClosing(false);
+                            }, 250);
+                        } else {
+                            setMenu(true);
+                        }
+                    }}
                     aria-label="Abrir menú"
                 >
-                    <Menu className="text-purple-600 transition-colors w-7 h-7 dark:text-purple-400 hover:text-purple-800 dark:hover:text-purple-200" />
+                    <Menu className={`w-6 h-6 text-black dark:text-white transition-all duration-300 hover:text-gray-600 dark:hover:text-gray-300 ${menu ? 'rotate-90' : 'rotate-0'}`} />
                 </button>
             </div>
             {/* Menú móvil */}
             {menu && (
-                <div className="fixed inset-0 z-50 bg-black/40 md:hidden" onClick={() => setMenu(false)}>
+                <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm md:hidden" onClick={() => {
+                    setMenuClosing(true);
+                    setTimeout(() => {
+                        setMenu(false);
+                        setMenuClosing(false);
+                    }, 250);
+                }}>
                     <nav
-                        className="absolute flex flex-col w-48 gap-2 px-6 py-4 text-center bg-white shadow-xl dark:bg-gray-800 right-4 top-16 rounded-xl animate-slide-in"
+                        className={`fixed top-0 right-0 h-full w-[65%] flex flex-col bg-white/95 dark:bg-neutral-900/95 backdrop-blur-lg shadow-2xl border-l border-gray-200 dark:border-neutral-700 ${menuClosing ? 'animate-slide-out' : 'animate-slide-in'}`}
                         onClick={(e) => e.stopPropagation()}
                     >
-                        {links.map((link) => (
-                            <a
-                                key={link.href}
-                                href={link.href}
-                                className="block px-4 py-2 font-semibold text-purple-600 transition-all duration-300 rounded-lg cursor-pointer dark:text-purple-400 hover:bg-purple-100 dark:hover:bg-gray-700 hover:text-purple-800 dark:hover:text-purple-200 hover:scale-105"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    setMenu(false);
-                                    // Pequeño delay para que se cierre el menú antes del scroll
+                        {/* Botón de cierre */}
+                        <div className="flex justify-end p-4">
+                            <button
+                                onClick={() => {
+                                    setMenuClosing(true);
                                     setTimeout(() => {
-                                        scrollToSection(link.href);
-                                    }, 100);
+                                        setMenu(false);
+                                        setMenuClosing(false);
+                                    }, 250);
                                 }}
+                                className="p-2 text-gray-500 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-neutral-800 rounded-lg transition-all duration-200"
                             >
-                                {link.label}
-                            </a>
-                        ))}
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        {/* Lista de navegación */}
+                        <div className="flex-1 px-6 space-y-1 overflow-y-auto">
+                            {links.map((link, index) => (
+                                <a
+                                    key={link.href}
+                                    href={link.href}
+                                    className="flex items-center justify-between px-4 py-3 font-medium text-gray-700 dark:text-gray-300 transition-all duration-300 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-neutral-800 hover:text-black dark:hover:text-white group"
+                                    style={{ animationDelay: `${index * 50}ms` }}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        setMenuClosing(true);
+                                        setTimeout(() => {
+                                            setMenu(false);
+                                            setMenuClosing(false);
+                                            scrollToSection(link.href);
+                                        }, 250);
+                                    }}
+                                >
+                                    <span>{link.label}</span>
+                                    <svg className="w-4 h-4 text-gray-400 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </a>
+                            ))}
+                        </div>
                     </nav>
                 </div>
             )}
             <style jsx>{`
                 @keyframes slide-in {
                     from {
-                        opacity: 0;
-                        transform: translateY(-20px) scale(0.98);
+                        transform: translateX(100%);
                     }
                     to {
-                        opacity: 1;
-                        transform: translateY(0) scale(1);
+                        transform: translateX(0);
+                    }
+                }
+                @keyframes slide-out {
+                    from {
+                        transform: translateX(0);
+                    }
+                    to {
+                        transform: translateX(100%);
                     }
                 }
                 .animate-slide-in {
                     animation: slide-in 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+                }
+                .animate-slide-out {
+                    animation: slide-out 0.25s cubic-bezier(0.4, 0, 0.2, 1);
                 }
                 
                 /* Efecto de highlight para las secciones */
