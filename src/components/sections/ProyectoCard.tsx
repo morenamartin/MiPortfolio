@@ -51,7 +51,8 @@ const ProyectoCard = ({ proyecto, index }: ProyectoCardProps) => {
     return (
         <div
             ref={containerRef}
-            className={`relative z-0 flex flex-col items-center justify-center w-full px-4 py-8 bg-white md:flex-row dark:bg-black md:px-12 md:py-28 ${index === 0 ? 'md:mt-40 mt-24' : 'md:mt-12 mt-6'} mb-20 md:mb-0`}
+            // Cambiado: añadir md:min-h-screen para que cada proyecto ocupe al menos la altura de la ventana en desktop
+            className={`relative z-0 flex flex-col items-center justify-center w-full px-4 py-8 bg-white md:flex-row dark:bg-black md:px-12 md:py-28 md:min-h-screen mb-20 md:mb-0`}
         >
             <div className={`w-full max-w-6xl transition-all duration-1000 flex flex-col justify-between py-6 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                 <div className={`grid grid-cols-1 md:grid-cols-2 gap-y-16 md:gap-y-12 gap-x-6 md:gap-x-12 items-start`}>  

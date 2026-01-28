@@ -22,41 +22,46 @@ const EducacionExperiencia = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+    const getDesc = (key: string): string[] => {
+        const v = t<string | string[]>(key);
+        return Array.isArray(v) ? (v as string[]) : [String(v)];
+    };
+
     // Crear experiencias usando traducciones
     const experienciasEducacion = [
         {
             id: 1,
-            titulo: t('educacionExperiencia.item1.titulo'),
-            fecha: t('educacionExperiencia.item1.fecha'),
-            lugar: t('educacionExperiencia.item1.lugar'),
-            descripcion: t('educacionExperiencia.item1.descripcion'),
+            titulo: t<string>('educacionExperiencia.item1.titulo'),
+            fecha: t<string>('educacionExperiencia.item1.fecha'),
+            lugar: t<string>('educacionExperiencia.item1.lugar'),
+            descripcion: getDesc('educacionExperiencia.item1.descripcion'),
             tecnologias: ["/icons/tinkercad.svg"],
             tipo: "educacion"
         },
         {
             id: 2,
-            titulo: t('educacionExperiencia.item2.titulo'),
-            fecha: t('educacionExperiencia.item2.fecha'),
-            lugar: t('educacionExperiencia.item2.lugar'),
-            descripcion: t('educacionExperiencia.item2.descripcion'),
+            titulo: t<string>('educacionExperiencia.item2.titulo'),
+            fecha: t<string>('educacionExperiencia.item2.fecha'),
+            lugar: t<string>('educacionExperiencia.item2.lugar'),
+            descripcion: getDesc('educacionExperiencia.item2.descripcion'),
             tecnologias: ["/icons/canva.svg"],
             tipo: "educacion"
         },
         {
             id: 3,
-            titulo: t('educacionExperiencia.item3.titulo'),
-            fecha: t('educacionExperiencia.item3.fecha'),
-            lugar: t('educacionExperiencia.item3.lugar'),
-            descripcion: t('educacionExperiencia.item3.descripcion'),
+            titulo: t<string>('educacionExperiencia.item3.titulo'),
+            fecha: t<string>('educacionExperiencia.item3.fecha'),
+            lugar: t<string>('educacionExperiencia.item3.lugar'),
+            descripcion: getDesc('educacionExperiencia.item3.descripcion'),
             tecnologias: ["/icons/blender.svg"],
             tipo: "educacion"
         },
         {
             id: 4,
-            titulo: t('educacionExperiencia.item4.titulo'),
-            fecha: t('educacionExperiencia.item4.fecha'),
-            lugar: t('educacionExperiencia.item4.lugar'),
-            descripcion: t('educacionExperiencia.item4.descripcion'),
+            titulo: t<string>('educacionExperiencia.item4.titulo'),
+            fecha: t<string>('educacionExperiencia.item4.fecha'),
+            lugar: t<string>('educacionExperiencia.item4.lugar'),
+            descripcion: getDesc('educacionExperiencia.item4.descripcion'),
             tecnologias: [
                 "/icons/html5.svg",
                 "/icons/css3.svg",
@@ -68,10 +73,10 @@ const EducacionExperiencia = () => {
         },
         {
             id: 5,
-            titulo: t('educacionExperiencia.item5.titulo'),
-            fecha: t('educacionExperiencia.item5.fecha'),
-            lugar: t('educacionExperiencia.item5.lugar'),
-            descripcion: t('educacionExperiencia.item5.descripcion'),
+            titulo: t<string>('educacionExperiencia.item5.titulo'),
+            fecha: t<string>('educacionExperiencia.item5.fecha'),
+            lugar: t<string>('educacionExperiencia.item5.lugar'),
+            descripcion: getDesc('educacionExperiencia.item5.descripcion'),
             tecnologias: [
                 "/icons/html5.svg",
                 "/icons/css3.svg",
@@ -90,10 +95,10 @@ const EducacionExperiencia = () => {
         },
         {
             id: 6,
-            titulo: t('educacionExperiencia.item6.titulo'),
-            fecha: t('educacionExperiencia.item6.fecha'),
-            lugar: t('educacionExperiencia.item6.lugar'),
-            descripcion: t('educacionExperiencia.item6.descripcion'),
+            titulo: t<string>('educacionExperiencia.item6.titulo'),
+            fecha: t<string>('educacionExperiencia.item6.fecha'),
+            lugar: t<string>('educacionExperiencia.item6.lugar'),
+            descripcion: getDesc('educacionExperiencia.item6.descripcion'),
             tecnologias: [
                 "/icons/react.svg",
                 "/icons/typescript.svg",
@@ -174,7 +179,7 @@ const EducacionExperiencia = () => {
                         style={{ 
                             scrollbarWidth: 'none',
                             WebkitOverflowScrolling: 'touch'
-                        }}
+                        } as React.CSSProperties}
                     >
                         {experienciasEducacion.map((experiencia) => (
                             <TimelineItem 
@@ -183,7 +188,7 @@ const EducacionExperiencia = () => {
                                 fecha={experiencia.fecha}
                                 lugar={experiencia.lugar}
                                 // Asegurar que siempre sea string[]
-                                descripcion={Array.isArray(experiencia.descripcion) ? experiencia.descripcion : [experiencia.descripcion]}
+                                descripcion={experiencia.descripcion}
                                 tecnologias={experiencia.tecnologias}
                                 isMobile={true}
                             />
@@ -231,8 +236,11 @@ const EducacionExperiencia = () => {
                             className="h-[80vh] overflow-y-scroll snap-y snap-mandatory flex-1 duration-300 scroll-smooth"
                             style={{ 
                                 scrollbarWidth: 'thin',
+                                // scrollbarColor is non-standard in React's CSS typings
+                                // cast to React.CSSProperties to avoid type errors
+                                // while preserving the visual intent
                                 scrollbarColor: '#a78bfa transparent'
-                            }}
+                            } as React.CSSProperties}
                         >
                             {experienciasEducacion.map((experiencia) => (
                                 <TimelineItem 
@@ -241,7 +249,7 @@ const EducacionExperiencia = () => {
                                     fecha={experiencia.fecha}
                                     lugar={experiencia.lugar}
                                     // Asegurar que siempre sea string[]
-                                    descripcion={Array.isArray(experiencia.descripcion) ? experiencia.descripcion : [experiencia.descripcion]}
+                                    descripcion={experiencia.descripcion}
                                     tecnologias={experiencia.tecnologias}
                                     isMobile={false}
                                 />
