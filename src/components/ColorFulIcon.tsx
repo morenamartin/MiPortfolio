@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function ColorfulIcon({ 
   name, 
   className = "w-16 h-16",
@@ -19,19 +21,15 @@ export default function ColorfulIcon({
 }) {
   return (
     <div className="relative group">
-      <img
-        src={`/icons/${name}.svg`}
-        alt={name}
-        className={`
-          ${className} 
-          transition-all duration-300 ease-in-out
-          cursor-pointer
-          ${forceActive ? '!grayscale-0 !opacity-100 !scale-110' : 'grayscale opacity-70'}
-          hover:!grayscale-0 
-          hover:!opacity-100
-          hover:!scale-110
-        `}
-      />
+      <div className={`${className} relative transition-all duration-300 ease-in-out cursor-pointer ${forceActive ? '!grayscale-0 !opacity-100 !scale-110' : 'grayscale opacity-70'} hover:!grayscale-0 hover:!opacity-100 hover:!scale-110`}>
+        <Image
+          src={`/icons/${name}.svg`}
+          alt={name}
+          fill
+          className="object-contain"
+          sizes="(max-width: 768px) 80px, 96px"
+        />
+      </div>
       
       {/* Tooltip */}
       {displayName && years && yearText && yearsText && experienceText && (

@@ -182,7 +182,8 @@ const EducacionExperiencia = () => {
                                 titulo={experiencia.titulo}
                                 fecha={experiencia.fecha}
                                 lugar={experiencia.lugar}
-                                descripcion={experiencia.descripcion}
+                                // Asegurar que siempre sea string[]
+                                descripcion={Array.isArray(experiencia.descripcion) ? experiencia.descripcion : [experiencia.descripcion]}
                                 tecnologias={experiencia.tecnologias}
                                 isMobile={true}
                             />
@@ -239,7 +240,8 @@ const EducacionExperiencia = () => {
                                     titulo={experiencia.titulo}
                                     fecha={experiencia.fecha}
                                     lugar={experiencia.lugar}
-                                    descripcion={experiencia.descripcion}
+                                    // Asegurar que siempre sea string[]
+                                    descripcion={Array.isArray(experiencia.descripcion) ? experiencia.descripcion : [experiencia.descripcion]}
                                     tecnologias={experiencia.tecnologias}
                                     isMobile={false}
                                 />

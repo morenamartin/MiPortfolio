@@ -8,12 +8,8 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [isDesktop, setIsDesktop] = useState(false);
   
-  // Estado para touch
-  const touchStartY = useRef<number>(0);
-  const isTouchScrolling = useRef<boolean>(false);
-
+  // Detectar si es desktop o mobile
   useEffect(() => {
-    // Detectar si es desktop o mobile
     const checkIfDesktop = () => {
       setIsDesktop(window.innerWidth >= 768); // md breakpoint de Tailwind
     };
@@ -29,6 +25,9 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
+
+    // copiar valor actual del timeout para usar en cleanup (evita warning de ref cambiante)
+    const currentTimeout = scrollTimeoutRef.current;
 
     const sections = container.querySelectorAll('.section');
     const sectionHeight = window.innerHeight;
@@ -171,9 +170,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
         container.removeEventListener('wheel', handleWheel);
       }
       container.removeEventListener('scroll', handleNativeScroll);
-      // Copiar el valor actual antes del cleanup para evitar warning de ref variable change
-      const timeout = scrollTimeoutRef.current;
-      if (timeout) clearTimeout(timeout);
+      if (currentTimeout) clearTimeout(currentTimeout);
     };
   }, [isAnimating, sectionScrollProgress, isDesktop]); // eliminado lastSection de deps
 

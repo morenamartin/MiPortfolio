@@ -10,14 +10,11 @@ const Tecnologias = () => {
   const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   
-  // Evitar hydration mismatch - inicializar con valor por defecto
+  // Evitar hydration mismatch - quitar isClient ya que no se usa
   const [widthIcon, setWidthIcon] = useState("w-24 h-24");
-  const [isClient, setIsClient] = useState(false);
 
   // Detectar cambios de tamaño de pantalla
   useEffect(() => {
-    setIsClient(true);
-    
     const handleResize = () => {
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
@@ -86,7 +83,7 @@ const Tecnologias = () => {
               ];
             
             // Activar el efecto de ola después de 1 segundo
-            const timer = setTimeout(() => {
+            setTimeout(() => {
               console.log('Iniciando animación de ola diagonal');
               let step = 0;
               const interval = setInterval(() => {
@@ -119,14 +116,10 @@ const Tecnologias = () => {
       { threshold: 0.3 } // Se activa cuando el 30% de la sección es visible
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    const el = sectionRef.current;
+    if (el) observer.observe(el);
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
+      if (el) observer.unobserve(el);
     };
   }, [hasAnimated, isMobile]); // Agregar isMobile como dependencia
 

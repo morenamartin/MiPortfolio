@@ -144,8 +144,7 @@ const SoftSkills = () => {
 
     const getItemStyle = (index: number): React.CSSProperties => {
         const skill = skills[index];
-        const isRectangle = phase === 'rectangulos';
-        
+
         if (phase === 'inicial') {
             // Todos pequeños en el centro
             return {
