@@ -10,13 +10,13 @@ const Navbar = () => {
     const { t } = useTranslation();
 
 const links = [
-  { href: "#inicio", label: t('navbar.inicio') },
-  { href: "#sobre-mi", label: t('navbar.sobreMi') },
-  { href: "#habilidades", label: t('navbar.softSkills') },
-  { href: "#tecnologias", label: t('navbar.tecnologias') },
-  { href: "#educacion-experiencia", label: t('navbar.educacionExperiencia') },
-  { href: "#proyectos", label: t('navbar.proyectos') },
-  { href: "#contacto", label: t('navbar.contacto') },
+    { href: "#inicio", label: t<string>('navbar.inicio') },
+    { href: "#sobre-mi", label: t<string>('navbar.sobreMi') },
+    { href: "#habilidades", label: t<string>('navbar.softSkills') },
+    { href: "#tecnologias", label: t<string>('navbar.tecnologias') },
+    { href: "#educacion-experiencia", label: t<string>('navbar.educacionExperiencia') },
+    { href: "#proyectos", label: t<string>('navbar.proyectos') },
+    { href: "#contacto", label: t<string>('navbar.contacto') },
 ];
 
     useEffect(() => {
@@ -63,7 +63,7 @@ const links = [
                 <a
                     key={link.href}
                     href={link.href}
-                    className="px-2 py-2 font-bold text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-200 drop-shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer"
+                    className="px-2 py-2 font-bold text-black transition-all duration-300 cursor-pointer dark:text-white hover:text-gray-600 dark:hover:text-gray-200 drop-shadow-lg hover:scale-105"
                     onClick={(e) => {
                         e.preventDefault();
                         scrollToSection(link.href);
@@ -81,7 +81,7 @@ const links = [
                 
                 {/* Botón de menú hamburguesa */}
                 <button
-                    className="flex items-center justify-center p-2 rounded-lg md:hidden focus:outline-none transition-all duration-300 hover:scale-110"
+                    className="flex items-center justify-center p-2 transition-all duration-300 rounded-lg md:hidden focus:outline-none hover:scale-110"
                     onClick={() => {
                         if (menu) {
                             setMenuClosing(true);
@@ -121,7 +121,7 @@ const links = [
                                         setMenuClosing(false);
                                     }, 250);
                                 }}
-                                className="p-2 text-gray-500 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-neutral-800 rounded-lg transition-all duration-200"
+                                className="p-2 text-gray-500 transition-all duration-200 rounded-lg hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-neutral-800"
                             >
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -135,7 +135,7 @@ const links = [
                                 <a
                                     key={link.href}
                                     href={link.href}
-                                    className="flex items-center justify-between px-4 py-3 font-medium text-gray-700 dark:text-gray-300 transition-all duration-300 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-neutral-800 hover:text-black dark:hover:text-white group"
+                                    className="flex items-center justify-between px-4 py-3 font-medium text-gray-700 transition-all duration-300 rounded-lg cursor-pointer dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-800 hover:text-black dark:hover:text-white group"
                                     style={{ animationDelay: `${index * 50}ms` }}
                                     onClick={(e) => {
                                         e.preventDefault();

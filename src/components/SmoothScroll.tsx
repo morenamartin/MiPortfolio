@@ -5,7 +5,6 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
   const containerRef = useRef<HTMLDivElement>(null);
   const [isAnimating, setIsAnimating] = useState(false);
   const [sectionScrollProgress, setSectionScrollProgress] = useState<{[key: number]: number}>({});
-  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [isDesktop, setIsDesktop] = useState(false);
   
   // Estado para touch
@@ -171,9 +170,6 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
         container.removeEventListener('wheel', handleWheel);
       }
       container.removeEventListener('scroll', handleNativeScroll);
-      // Copiar el valor actual antes del cleanup para evitar warning de ref variable change
-      const timeout = scrollTimeoutRef.current;
-      if (timeout) clearTimeout(timeout);
     };
   }, [isAnimating, sectionScrollProgress, isDesktop]); // eliminado lastSection de deps
 

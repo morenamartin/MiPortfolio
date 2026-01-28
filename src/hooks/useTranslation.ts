@@ -6,7 +6,8 @@ import { translations } from "@/context/translations";
 export const useTranslation = () => {
   const { language } = useLanguage();
   
-  const t = (key: string) => {
+  // Devuelve el valor traducido (puede ser string o cualquier otro tipo, p. ej. string[])
+  const t = <T = unknown>(key: string, fallback?: T): T | string => {
     const keys = key.split('.');
     let value: unknown = (translations as Record<string, unknown>)[language];
     
@@ -19,10 +20,10 @@ export const useTranslation = () => {
         }
       }
       console.warn(`Translation key "${key}" not found for language "${language}"`);
-      return key;
+      return (fallback !== undefined ? fallback : key) as unknown as string;
     }
     
-    return typeof value === 'string' ? value : key;
+    return (value as T) ?? (fallback !== undefined ? fallback : key);
   };
 
   return { t, language };

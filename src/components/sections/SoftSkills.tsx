@@ -133,13 +133,13 @@ const SoftSkills = () => {
     };
 
     const skills = [
-        { left: 35, top: 25, label: t('softSkills.teamwork') },
-        { left: 65, top: 25, label: t('softSkills.communication') },
-        { left: 25, top: 50, label: t('softSkills.timeManagement') },
-        { left: 50, top: 50, label: t('softSkills.resultOriented') },
-        { left: 75, top: 50, label: t('softSkills.adaptability') },
-        { left: 35, top: 75, label: t('softSkills.organization') },
-        { left: 65, top: 75, label: t('softSkills.continuousLearning') }
+        { left: 35, top: 25, label: t<string>('softSkills.teamwork') },
+        { left: 65, top: 25, label: t<string>('softSkills.communication') },
+        { left: 25, top: 50, label: t<string>('softSkills.timeManagement') },
+        { left: 50, top: 50, label: t<string>('softSkills.resultOriented') },
+        { left: 75, top: 50, label: t<string>('softSkills.adaptability') },
+        { left: 35, top: 75, label: t<string>('softSkills.organization') },
+        { left: 65, top: 75, label: t<string>('softSkills.continuousLearning') }
     ];
 
     const getItemStyle = (index: number): React.CSSProperties => {
